@@ -5,3 +5,31 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+5.times do 
+Victim.create({
+  name: FFaker::Name.name,
+  description: FFaker::Lorem.sentence,
+  geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng]     
+  })
+
+end
+
+5.times do 
+Seeker.create({
+  name: FFaker::Name.name,
+  email: FFaker::Internet.email,  
+  password_digest: FFaker::NameDE.first_name,   
+  phone: FFaker::PhoneNumber.phone_number  
+  })
+
+end
+
+2.times do 
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: 1     
+  })
+
+end

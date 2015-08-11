@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.point    "geolocation"
     t.string   "email"
     t.integer  "phone"
-    t.text     "descripion"
-    t.boolean  "need_rescue"
+    t.text     "description"
+    t.boolean  "need_rescue", default: true
     t.inet     "ip"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end

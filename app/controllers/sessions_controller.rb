@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
 
   def create
-    seeker = Seeker.find_by(username: params[:username])
+    seeker = Seeker.find_by(email: params[:email])
     if seeker && seeker.authenticate(params[:password])
-      session[:current_user_id] = seeker.id
+      session[:current_seeker_id] = seeker.id
       redirect_to root_path
     else
       redirect_to root_path
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:current_user_id] = nil
+    session[:current_seeker_id] = nil
     redirect_to root_path
   end
 

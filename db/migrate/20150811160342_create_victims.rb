@@ -8,8 +8,8 @@ class CreateVictims < ActiveRecord::Migration
       t.point :geolocation
       t.string :email
       t.integer :phone
-      t.text :descripion
-      t.boolean :need_rescue
+      t.text :description
+      t.boolean :need_rescue, :default => true
       t.inet :ip
 
       t.timestamps null: false
