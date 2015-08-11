@@ -63,3 +63,6 @@ group :development, :test do
   gem 'pry', '~> 0.10.1'
 end
 
+
+gem 'rails-assets-underscore', source: 'https://rails-assets.org'
+gem 'rails-assets-backbone', source: 'https://rails-assets.org'
