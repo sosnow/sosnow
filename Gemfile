@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'pry-rails'
 gem 'backbars'
 gem 'httparty'
 
@@ -58,11 +57,8 @@ group :development, :test do
 
   # for the rails panel to work in chrome
   gem 'meta_request'
-
+	gem 'pry-rails'
+	gem 'ffaker'
   # let's you use binding.pry
   gem 'pry', '~> 0.10.1'
 end
-
-
-gem 'rails-assets-underscore', source: 'https://rails-assets.org'
-gem 'rails-assets-backbone', source: 'https://rails-assets.org'
