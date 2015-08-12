@@ -59,6 +59,7 @@ group :development, :test do
   gem 'meta_request'
 	gem 'pry-rails'
 	gem 'ffaker'
+  gem 'jquery-datetimepicker-rails'
   # let's you use binding.pry
   gem 'pry', '~> 0.10.1'
 end
