@@ -7,7 +7,7 @@ class CreateVictims < ActiveRecord::Migration
       t.string :location
       t.point :geolocation
       t.string :email
-      t.integer :phone
+      t.string :phone
       t.text :description
       t.boolean :need_rescue, :default => true
       t.inet :ip

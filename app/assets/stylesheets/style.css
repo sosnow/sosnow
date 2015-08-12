@@ -1,6 +1,8 @@
 body {
-	background-color: DarkRed;
 	font-family: monaco, Consolas, 'Lucida Console', monospace;
+	font-size: 14px;
+	color: black;
+
 }
 
 .hide {
@@ -13,6 +15,7 @@ body {
 	color: white;
 	background-color: DarkSlateGrey;
 	height: 50px;
+	z-index: 200;
 }
 
 #brand {
@@ -28,20 +31,24 @@ body {
 	right: 20px;
 }
 
-#page {
-	color: black;
+#page-container {
+	position: absolute;
+	width: 100%;
+	background-color: DarkRed;
 	top: 50px;
+}
+
+#page {
 	background-color: white;
+	padding: 50px 0;
 	width: 90%;
-	height: 600px;
-	padding: 50px 0 0;
+	height: 100%;
 	margin: 0 auto;
-    clear: both;
 }
 
 #help-form-submitted-message {
 	background-color: beige;
-	margin: 40px auto 0;
+	margin: 0 auto;
 	padding: 10px;
 	width: 300px; 
 	border: 4px solid #CCC
@@ -50,7 +57,7 @@ body {
 #help-form {
 	padding: 20px 0 0 0;
 	margin: 0 auto;
-	width: 300px; 
+	width: 360px; 
 }
 
 .radio-button-ul {
@@ -76,6 +83,10 @@ body {
     bottom:0;
 }
 
+.pac-icon {
+	display: none;
+}
+
 .radio-button-ul input[type="radio"] {
     opacity:0.01;
     z-index:100;
@@ -89,10 +100,27 @@ body {
 .radio-button-ul label {
      padding:5px;
      border:1px solid #CCC; 
+     border-radius: 50px;
      cursor:pointer;
     z-index:90;
 }
 
 .radio-button-ul label:hover {
      background:#DDD;
+}
+
+.input-text {
+	height: 30px;
+	width: 328px;
+	font-size: 18px;
+}
+
+.input-textarea {
+	resize: none;
+	width: 328px;
+	font-size: 18px;
+}
+
+.line-message-div {
+	height: 18px;
 }
