@@ -12,7 +12,6 @@ App.Views.Forms = Backbone.View.extend({
 		this.$el.html(this.template);
 	},
 	addVictim: function(){
-		alert('this is working');
 		var data = { 
 			name: $('[name=name]').val(),
 			age: $('[name=age]').val(),
