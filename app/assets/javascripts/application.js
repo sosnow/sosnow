@@ -40,6 +40,7 @@ $(function() {
 	$('#i-need-help-button').click(goToAdd);
 });
 
+
 var goToSearch = function(){
     	$('#page').empty();
     	// App.form.remove();
