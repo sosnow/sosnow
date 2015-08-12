@@ -22,6 +22,8 @@
 //= require_tree ./backbone/collections
 //= require_tree ./backbone/views
 //= require_tree ./templates
+//= require jquery.datetimepicker
+//= require jquery.datetimepicker/init
 //= require_tree .
 var App = {
 	Models: {}, 
