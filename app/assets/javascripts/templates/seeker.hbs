@@ -1,0 +1,31 @@
+<div class='sign'>
+	{{#if seeker}}
+	<p class= "hello"> Hello {{name}}</p> 
+	   <button class='logout' data-value={{id}}>Log Out</button>
+	     {{else}}
+	        <button class='sign-up'>Sign Up</button>
+	        <button class='log-in'>Log In</button>
+	    {{/if}}
+</div>
+
+<div id='seeker-info'>
+<h1>Contact Info</h1>
+<p>Name : {{name}}</p>
+<p>Phone : {{phone}}</p>
+<p>Location : {{location}}</p>
+<p>Email : {{email}}</p>
+</div>
+
+
+<table class = 'victim-list'>
+	<tr>
+		<th>Name</th>
+		<th>Location</th> 
+		<th>DateTime</th>
+	</tr>
+	<tr class = 'list'>
+		<td class='see-victim' data-value={{id}}>{{name}}</td>
+		<td class='see-victim' data-value={{id}}>{{location}}</td> 
+		<td class='see-victim' data-value={{id}}>{{created_at}}</td>
+	</tr>
+</table>
