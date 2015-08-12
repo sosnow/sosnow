@@ -31,5 +31,8 @@ var App = {
 };
 
 $(function() {
-	App.form = new App.Views.Forms();
+	App.victims = new App.Collections.Victims();
+	App.form = new App.Views.Forms({collection: App.victims});
+	App.victims.fetch();
+
 });

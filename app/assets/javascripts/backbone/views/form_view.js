@@ -1,7 +1,7 @@
 App.Views.Forms = Backbone.View.extend({
 	el:'#page',
 	events: {
-    'submit form#help-needed': 'addVictim'
+    'click #submit': 'addVictim'
   },
 	initialize: function(){
 		console.log('Form View Loaded');
@@ -17,8 +17,20 @@ App.Views.Forms = Backbone.View.extend({
 			name: $('[name=name]').val(),
 			age: $('[name=age]').val(),
 			gender: $('[name=gender]').val(),
-			location: $('[name=location]').val()
+			location: $('[name=location]').val(),
+			description: $('[name=description]').val(),
+			email: $('[name=email]').val(),
+			phone: $('[name=phone]').val()
 		 };
-		// this.collection.create(data);
+		 var templateTwo = HandlebarsTemplates['help_form_submitted'];		
+		this.collection.create(data);
+		this.$el.empty();
+		this.$el.html(templateTwo);
+		this.$("#help-form-after-submission").html(this.template);
+		this.childElement();
+	},
+	childElement: function(){
+		$("#help-form-after-submission").html(this.template);
 	}
+
 });
