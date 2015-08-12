@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require underscore
 //= require backbone
@@ -22,8 +23,6 @@
 //= require_tree ./backbone/collections
 //= require_tree ./backbone/views
 //= require_tree ./templates
-//= require jquery.datetimepicker
-//= require jquery.datetimepicker/init
 //= require_tree .
 var App = {
 	Models: {}, 

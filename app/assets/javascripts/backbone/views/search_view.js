@@ -7,11 +7,12 @@ App.Views.Search = Backbone.View.extend({
 	},
 	render: function(){
 		this.$el.html(this.template);
+		
 	},
 	events: {
 		'click .search': 'goSearch'
 	},
 	goSearch: function(){
-		
+
 	}
 });
