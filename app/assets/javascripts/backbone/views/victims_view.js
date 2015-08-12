@@ -15,9 +15,9 @@ App.Views.Victims = Backbone.View.extend({
 	events: {
 		'click #submit': 'newTodo'
 	},
-	newTodo: function() {
-		var data = { description: $('[name=description]').val() };
-		this.collection.create(data);
-		$('input').val('');
-	}
+	// newTodo: function() {
+	// 	var data = { description: $('[name=description]').val() };
+	// 	this.collection.create(data);
+	// 	$('input').val('');
+	// }
 });

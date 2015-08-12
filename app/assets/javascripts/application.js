@@ -37,4 +37,16 @@ $(function() {
 	App.form = new App.Views.Forms({collection: App.victims});
 	App.victims.fetch();
 
+	$('#seek-someone-button').click(goToSearch);
+	$('#i-need-help-button').click(goToAdd);
 });
+
+var goToSearch = function(){
+    	$('#page').empty();
+    	App.search = new App.Views.Search({collection: App.victims});
+    	App.victims.fetch();
+    };
+var goToAdd = function(){
+    	$('#page').empty();
+    	App.form = new App.Views.Forms();
+    };

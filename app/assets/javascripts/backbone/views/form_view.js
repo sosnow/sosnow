@@ -1,7 +1,7 @@
 App.Views.Forms = Backbone.View.extend({
     el: '#page',
     events: {
-        'click #submit': 'addVictim'
+        'click #submit': 'addVictim',
     },
     initialize: function() {
         console.log('Form View Loaded');
