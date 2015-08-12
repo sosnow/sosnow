@@ -40,6 +40,7 @@ $(function() {
 	$('#i-need-help-button').click(goToAdd);
 });
 
+
 var goToSearch = function(){
     	$('#page').empty();
     	App.search = new App.Views.Search({collection: App.victims});
@@ -49,3 +50,4 @@ var goToAdd = function(){
     	$('#page').empty();
     	App.form = new App.Views.Forms();
     };
+
