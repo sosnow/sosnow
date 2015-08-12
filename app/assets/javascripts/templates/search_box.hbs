@@ -1,0 +1,46 @@
+<div class='sign'>
+	{{#if seeker}}
+	<p class= "hello"> Hello {{name}}</p> 
+	   <button class='logout' data-value={{id}}>Log Out</button>
+	     {{else}}
+	        <button class='sign-up'>Sign Up</button>
+	        <button class='log-in'>Log In</button>
+	    {{/if}}
+</div>
+
+
+
+	<div id='search-bar'>
+		<input type="text" name='name' id='name-search' placeholder='enter name'>
+		
+		<input type="text" name='location' id='location-search' placeholder='enter location'>
+
+		<input id="datetimepicker" type="text" >
+			
+		<button class='search'>search</button>
+			
+			<div class="news_api">
+			</div>
+
+			<div id ='victim-box'>
+				<table class = 'victim-list'>
+				  <tr>
+				    <th>Name</th>
+				    <th>Location</th> 
+				    <th>DateTime</th>
+				  </tr>
+				  <tr class = 'list'>
+				    <td class='see-victim' data-value={{id}}>{{name}}</td>
+				    <td class='see-victim' data-value={{id}}>{{location}}</td> 
+				    <td class='see-victim' data-value={{id}}>{{created_at}}</td>
+				  </tr>
+				</table>
+			</div>
+
+			
+
+	</div>
+
+
+
+
