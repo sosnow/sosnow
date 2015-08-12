@@ -1,56 +1,182 @@
+<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
+
 <div id="help-form">
-              
-    <label>Name: <input type="text" name="name"></label>
-    <br>
+
+  <div id="name-input-div" class="input-div">  
+    <label for="name">Name:</label><br>
+    <input type="text" class="input-text" id="name" name="name" placeholder="Enter full name">
+  </div>
+
+  <div id="age-input-div" class="input-div">  
     <ul class="radio-button-ul">
-        <li>
-            <center>
-            <input type="radio" id="infant" name="age" value="infant">
-            <label for="infant">Infant</label>
-            </center>
-        </li>
-        <li>
-            <center>
-            <input type="radio" id="adult" name="age" value="adult">
-            <label for="adult">Adult</label>
-            </center>
-        </li>
-        <li>
-            <center>
-            <input type="radio" id="senior" name="age" value="senior">
-            <label for="senior">Senior</label>
-            <center>
-        </li>
+      <li>
+        <center>
+        <input type="radio" id="infant" name="age" value="infant">
+        <label for="infant">Infant</label>
+        </center>
+      </li>
+      <li>
+        <center>
+        <input type="radio" id="child" name="age" value="child">
+        <label for="child">Child</label>
+        </center>
+      </li>
+      <li>
+        <center>
+        <input type="radio" id="adult" name="age" value="adult">
+        <label for="adult">Adult</label>
+        </center>
+      </li>
+      <li>
+        <center>
+        <input type="radio" id="senior" name="age" value="senior">
+        <label for="senior">Senior</label>
+        <center>
+      </li>
     </ul>
-    <br>
+  </div>
+
+  <br>
+
+  <div id="gender-input-div" class="input-div">  
     <ul class="radio-button-ul">
-        <li>
-            <center>
-            <input type="radio" id="male" name="gender" value="male">
-            <label for="male">Male</label>
-            </center>
-        </li>
-        <li>
-            <center>
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Female</label>
-            </center>
-        </li>
+      <li>
+        <center>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        </center>
+      </li>
+      <li>
+        <center>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        </center>
+      </li>
     </ul>
-    <br>
-    <br>
-    <label>Location: <input type="text" name="location"></label>
-    <br>
-    <br>
-    <label>More info about location: <textarea rows="3" cols="30" name="description" form="help-needed"></textarea></label>
-    <br>
-    <br>
-    <label>Email: <input type="text" name="email"></label>
-    <br>
-    <br>
-    <label>Phone: <input type="text" name="phone"></label>
-    <br>
-    <br>
-    <button id="submit">Request Help</button>
-    
+  </div>
+
+  <br>
+  <br>
+
+  <div id="location-input-div" class="input-div">Location:
+    <div id="location-from-ip-div">
+      <input type="text" id="location-from-ip-display-box" class="input-text" readonly>
+      <div id="location-from-ip-confirmation" class="line-message-div">
+        Is this correct?
+        <button id="correct-location-button">Yes</button>
+        <button id="incorrect-location-button">No</button>
+      </div>
+    </div>
+    <div id="locationField" class="hide">
+      <input id="autocomplete" class="input-text" placeholder="Enter your location" onFocus="geolocate()" type="text"></input>
+      <div id="location-from-ip-confirmation" class="line-message-div">
+        <button id="ok-location-button" class='hide'>OK</button>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div id="location-more-info-input-div" class="input-div hide">
+    <label for="location-more-info">Enter more info about your location:</label>
+    <textarea id="location-more-info" class="input-textarea" rows="3" name="description" form="help-needed" placeholder="address, floor, room, etc."></textarea>
+  </div>
+
+  <br>
+
+  <div id="phone-input-div" class="input-div">
+    <label for"phone">Phone:</label><br>
+    <input id="phone" type="text" name="phone" class="input-text">
+  </div>
+
+  <br>
+
+  <div id="email-input-div" class="input-div">
+    <label for="email">Email:</label><br>
+    <input id="email" type="text" name="email" class="input-text">
+  </div>
+
+  <br>
+
+  <input type="hidden" id="geopoint" name="geopoint">
+
+  <button type="submit">Request Help</button>
+
 </div>
+
+<script type="text/javascript">
+
+$(window).ready(function() {
+
+  $.ajax({
+    type: 'GET',
+    url: "http://ip-api.com/json",
+    success: function(data) {
+      $('#geopoint').val('['+ data.lat + ',' + data.lon + ']');
+      $('#location-from-ip-display-box').val(data.city +', ' + data.region + ', ' + data.country);
+    },
+    error: function() {
+      $('#location-from-ip-div').addClass('hide');
+      $('#locationField').removeClass('hide');
+    }
+  });
+
+  $('#correct-location-button').on('click', function () {
+    $('#locationField').addClass('hide');
+    $('#location-from-ip-div').removeClass('hide');
+  });
+
+  $('#incorrect-location-button').on('click', function() {
+    $('#location-from-ip-div').addClass('hide');
+    $('#location-more-info-input-div').addClass('hide')
+    $('#locationField').removeClass('hide');
+  });
+
+  $('#location-from-ip-display-box').on('click', function() {
+    $('#location-from-ip-div').addClass('hide');
+    $('#locationField').removeClass('hide');
+  });
+
+  $('#autocomplete').change(function () {
+    if ( ( $('#autocomplete').val() ).length > 0) {
+      $('#ok-location-button').removeClass('hide'); 
+    }
+  })
+
+  $('#correct-location-button').on('click', function () {
+    $('#location-more-info-input-div').removeClass('hide');
+  })  
+
+  $('#ok-location-button').on('click', function () {
+    $('#location-more-info-input-div').removeClass('hide');
+    var confirmedPlace = autocomplete.getPlace();
+    var confirmedPlaceLatitude = confirmedPlace.geometry.location.G;
+    var confirmedPlaceLongitude = confirmedPlace.geometry.location.K;
+    $('#geopoint').val('['+ confirmedPlaceLatitude + ',' + confirmedPlaceLongitude + ']');
+    console.log($('#geopoint').val());
+  })
+
+});
+
+// Using the autocomplete feature of the Google Places API
+var autocomplete;
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      {types: ['geocode']});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', function() {
+    var changedPlace = autocomplete.getPlace();
+    var changedPlaceLatitude = changedPlace.geometry.location.G;
+    var changedPlaceLongitude = changedPlace.geometry.location.K;
+    $('#geopoint').val('['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']');
+    console.log($('#geopoint').val());
+  });
+}
+
+</script>

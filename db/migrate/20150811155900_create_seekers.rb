@@ -5,7 +5,7 @@ class CreateSeekers < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.string :location
-      t.integer :phone
+      t.string :phone
       t.inet :ip
 
       t.timestamps null: false
