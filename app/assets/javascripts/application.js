@@ -29,3 +29,7 @@ var App = {
 	Views: {}, 
 	Routers: {}
 };
+
+$(function() {
+	App.form = new App.Views.Forms();
+});
