@@ -10,9 +10,14 @@ App.Views.Search = Backbone.View.extend({
 		
 	},
 	events: {
-		'click .search': 'goSearch'
+		'click .search': 'goSearch',
+		'click .sign-up': 'loadSignup'
 	},
 	goSearch: function(){
 
-	}
+	},
+	loadSignup: function(){
+        $('#search-bar').empty();
+        App.signup = new App.Views.Signups();
+    }
 });
