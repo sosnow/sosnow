@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require underscore
 //= require backbone
@@ -22,8 +23,6 @@
 //= require_tree ./backbone/collections
 //= require_tree ./backbone/views
 //= require_tree ./templates
-//= require jquery.datetimepicker
-//= require jquery.datetimepicker/init
 //= require_tree .
 var App = {
 	Models: {}, 
@@ -31,3 +30,22 @@ var App = {
 	Views: {}, 
 	Routers: {}
 };
+
+$(function() {
+	App.victims = new App.Collections.Victims();
+	App.form = new App.Views.Forms({collection: App.victims});
+	App.victims.fetch();
+
+	$('#seek-someone-button').click(goToSearch);
+	$('#i-need-help-button').click(goToAdd);
+});
+
+var goToSearch = function(){
+    	$('#page').empty();
+    	App.search = new App.Views.Search({collection: App.victims});
+    	App.victims.fetch();
+    };
+var goToAdd = function(){
+    	$('#page').empty();
+    	App.form = new App.Views.Forms();
+    };
