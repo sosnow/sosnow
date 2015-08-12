@@ -1,0 +1,98 @@
+body {
+	background-color: DarkRed;
+	font-family: monaco, Consolas, 'Lucida Console', monospace;
+}
+
+.hide {
+	display: none;
+}
+
+#top-bar {
+	position: fixed;
+	width: 100%;
+	color: white;
+	background-color: DarkSlateGrey;
+	height: 50px;
+}
+
+#brand {
+	font-size: 26px;
+	margin: 0 5px 0;
+	padding: 10px 0 0 0;
+	float: left;
+}
+
+#navigation-buttons {
+	padding: 10px 0 0 0;
+	position: absolute;
+	right: 20px;
+}
+
+#page {
+	color: black;
+	top: 50px;
+	background-color: white;
+	width: 90%;
+	height: 600px;
+	padding: 50px 0 0;
+	margin: 0 auto;
+    clear: both;
+}
+
+#help-form-submitted-message {
+	background-color: beige;
+	margin: 40px auto 0;
+	padding: 10px;
+	width: 300px; 
+	border: 4px solid #CCC
+}
+
+#help-form {
+	padding: 20px 0 0 0;
+	margin: 0 auto;
+	width: 300px; 
+}
+
+.radio-button-ul {
+     list-style-type:none;
+     margin:25px 0 0 0;
+     padding:0;
+}
+
+.radio-button-ul li {
+     float:left;
+     margin:0 5px 0 0;
+    width:80px;
+    height:30px;
+    position:relative;
+}
+
+.radio-button-ul label, .radio-button-ul input {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.radio-button-ul input[type="radio"] {
+    opacity:0.01;
+    z-index:100;
+}
+
+.radio-button-ul input[type="radio"]:checked + label,
+.Checked + label {
+    background:yellow;
+}
+
+.radio-button-ul label {
+     padding:5px;
+     border:1px solid #CCC; 
+     cursor:pointer;
+    z-index:90;
+}
+
+.radio-button-ul label:hover {
+     background:#DDD;
+}
