@@ -43,11 +43,14 @@ $(function() {
 
 var goToSearch = function(){
     	$('#page').empty();
-    	App.search = new App.Views.Search({collection: App.victims});
+    	// App.form.remove();
+    	// console.log('removing form view');
     	App.victims.fetch();
+        App.search = new App.Views.Search({collection: App.victims});
     };
 var goToAdd = function(){
     	$('#page').empty();
-    	App.form = new App.Views.Forms();
+    	// App.search.remove();
+    	// console.log('removing search view');
+    	App.form = new App.Views.Forms({collection: App.victims});
     };
-
