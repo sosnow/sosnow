@@ -12,5 +12,11 @@ App.Collections.Victims = Backbone.Collection.extend({
                 App.modal.model.set(data);
             }
         });
-    }
+    },
+   	reversed: function() {
+		var models = this.models.slice().reverse().slice(0,20);
+		var collection = new Backbone.Collection();
+		collection.reset(models);
+		return collection;
+	}
 });

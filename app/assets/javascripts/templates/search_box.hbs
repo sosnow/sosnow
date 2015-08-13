@@ -15,13 +15,16 @@
     $( "#datepicker" ).datepicker();
   });
   </script>
-  
+
 	<div id='search-bar'>
 		<input type="text" name='name' id='name-search' placeholder='enter name'>
 		
 		<input type="text" name='location' id='location-search' placeholder='enter location'>
 
 		<input id="datepicker" type="text" >
+
+		<input type="radio" name="safe" value="false">Safe
+		<input type="radio" name="safe" value="true">Not Safe
 			
 		<button class='search'>search</button>
 			
@@ -29,18 +32,7 @@
 			</div>
 
 			<div id ='victim-box'>
-				<table class = 'victim-list'>
-				  <tr>
-				    <th>Name</th>
-				    <th>Location</th> 
-				    <th>DateTime</th>
-				  </tr>
-				  <tr class = 'list'>
-				    <td class='see-victim' data-value={{id}}>{{name}}</td>
-				    <td class='see-victim' data-value={{id}}>{{location}}</td> 
-				    <td class='see-victim' data-value={{id}}>{{created_at}}</td>
-				  </tr>
-				</table>
+
 			</div>
 
 			

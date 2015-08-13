@@ -1,4 +1,5 @@
 App.Views.Search = Backbone.View.extend({
+
 	el:'#page',
 	initialize: function(){
 		console.log('search view loaded');
