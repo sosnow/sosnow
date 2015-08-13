@@ -40,7 +40,7 @@ App.Views.Search = Backbone.View.extend({
         	var searchName = this.collection.models[i].attributes.name.toLowerCase();
         	// var searchlocation = 
         	var searchDate = this.collection.models[i].attributes.created_at;
-        	console.log(new Date(this.collection.models[i].attributes.created_at));
+        	console.log();
             if (searchName.match(data.name.toLowerCase())) {
                 var newResultView = new App.Views.Results({
                     model: this.collection.models[i]
