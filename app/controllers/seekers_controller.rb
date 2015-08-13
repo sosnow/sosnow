@@ -10,7 +10,6 @@ class SeekersController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		@seeker = Seeker.new(seeker_params)
 		@seeker.password=(params[:password])
 		if @seeker.save

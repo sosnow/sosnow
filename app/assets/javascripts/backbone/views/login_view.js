@@ -21,12 +21,6 @@ App.Views.Logins = Backbone.View.extend({
         var templateAfterSign = HandlebarsTemplates['search_box'];
 
         console.log(data);
-
-         
-        // this.collection.loginSeeker(data, function (err, seeker) {
-        //   if (err) { self.loginFailure(); }
-        //   else { self.loginSuccess(); }
-        // });
           
           $.ajax({
             type: "POST",
@@ -34,9 +28,6 @@ App.Views.Logins = Backbone.View.extend({
             data: data
            
           });
-
-          debugger;
-        // this.collection.create(data);
         this.$el.empty();
         this.$el.html(templateAfterSign);
    
@@ -44,8 +35,6 @@ App.Views.Logins = Backbone.View.extend({
      
 	},
   loginSuccess: function () {
-    // this.form.data('user-authorized', true);
-    // this.form.submit();
     console.log('logged in');
   },
 
