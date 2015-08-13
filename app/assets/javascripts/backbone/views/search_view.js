@@ -11,13 +11,20 @@ App.Views.Search = Backbone.View.extend({
 	},
 	events: {
 		'click .search': 'goSearch',
-		'click .sign-up': 'loadSignup'
+		'click .sign-up': 'loadSignup',
+		'click .log-in': 'loadLogin'
 	},
 	goSearch: function(){
 
 	},
 	loadSignup: function(){
         $('#search-bar').empty();
-        App.signup = new App.Views.Signups();
+        App.seekers = new App.Collections.Seekers();
+        App.signup = new App.Views.Signups({collection: App.seekers});
+    },
+    loadLogin: function(){
+        $('#search-bar').empty();
+        App.seekers = new App.Collections.Seekers();
+        App.login = new App.Views.Logins({collection: App.seekers});
     }
 });

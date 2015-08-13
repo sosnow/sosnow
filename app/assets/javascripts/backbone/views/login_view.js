@@ -1,23 +1,21 @@
-App.Views.Signups = Backbone.View.extend({
+App.Views.Logins = Backbone.View.extend({
   	el: '#search-bar',
   	initialize: function () {
-    	console.log('signup view loaded');
-    this.template = HandlebarsTemplates['seeker_signup'];
+    	console.log('login view loaded');
+    this.template = HandlebarsTemplates['seeker_login'];
     this.render();
 	},
 	render: function() {
 		this.$el.html(this.template);
 	},
 	events: {
-		'click #signup-button': 'createSeeker'
+		'click #login-button': 'loginSeeker'
 	},
-	createSeeker: function() {
+	loginSeeker: function() {
       var data = {
             
             email: $('[name=email]').val(),
-            password: $('[name=password]').val(),
-            password_confirmation: $('[name=password_confirmation]').val(),
-            name: $('[name=name]').val()
+            password: $('[name=password]').val()
       };
         var templateAfterSign = HandlebarsTemplates['search_box'];
 

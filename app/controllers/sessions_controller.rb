@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
+
     seeker = Seeker.find_by(email: params[:email])
     if seeker && seeker.authenticate(params[:password])
       session[:current_seeker_id] = seeker.id

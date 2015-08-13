@@ -24,6 +24,9 @@
 //= require_tree ./backbone/views
 //= require_tree ./templates
 //= require_tree .
+
+
+
 var App = {
 	Models: {}, 
 	Collections: {}, 
@@ -31,10 +34,15 @@ var App = {
 	Routers: {}
 };
 
+
 $(function() {
 	App.victims = new App.Collections.Victims();
 	App.form = new App.Views.Forms({collection: App.victims});
 	App.victims.fetch();
+	
+	// App.seekers = new App.Collections.Seekers();
+	// App.signup = new App..Views.Signups({collection: App.seekers});
+	// App.seekers.fetch();
 
 	$('#seek-someone-button').click(goToSearch);
 	$('#i-need-help-button').click(goToAdd);
