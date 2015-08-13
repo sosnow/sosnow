@@ -40,10 +40,6 @@ $(function() {
 	App.form = new App.Views.Forms({collection: App.victims});
 	App.victims.fetch();
 	
-	// App.seekers = new App.Collections.Seekers();
-	// App.signup = new App..Views.Signups({collection: App.seekers});
-	// App.seekers.fetch();
-
 	$('#seek-someone-button').click(goToSearch);
 	$('#i-need-help-button').click(goToAdd);
 });

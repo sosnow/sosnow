@@ -12,6 +12,7 @@ App.Views.Logins = Backbone.View.extend({
 		'click #login-button': 'loginSeeker'
 	},
 	loginSeeker: function() {
+         
       var data = {
             
             email: $('[name=email]').val(),
@@ -21,12 +22,36 @@ App.Views.Logins = Backbone.View.extend({
 
         console.log(data);
 
-        this.collection.create(data);
+         
+        // this.collection.loginSeeker(data, function (err, seeker) {
+        //   if (err) { self.loginFailure(); }
+        //   else { self.loginSuccess(); }
+        // });
+          
+          $.ajax({
+            type: "POST",
+            url: '/sessions',
+            data: data
+           
+          });
+
+          debugger;
+        // this.collection.create(data);
         this.$el.empty();
         this.$el.html(templateAfterSign);
    
-		console.log('what do you seek?');
+		console.log('logged in man!');
      
-	}
+	},
+  loginSuccess: function () {
+    // this.form.data('user-authorized', true);
+    // this.form.submit();
+    console.log('logged in');
+  },
+
+  loginFailure: function () {
+    console.log('failed!!');
+  }
+
 });
 
