@@ -14,8 +14,8 @@ App.Collections.Victims = Backbone.Collection.extend({
         });
     },
    	reversed: function() {
-		var models = this.models.slice().reverse();
-		var collection = new Backbone.Collection;
+		var models = this.models.slice().reverse().slice(0,20);
+		var collection = new Backbone.Collection();
 		collection.reset(models);
 		return collection;
 	}

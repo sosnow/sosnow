@@ -1,13 +1,15 @@
-App.Views.Victim = Backbone.View.extend({
+App.Views.Results = Backbone.View.extend({
 	initialize: function(){
-		console.log("New Victim View Created");
+		console.log('listing results');
 		this.template = HandlebarsTemplates['search_result'];
+		// this.listenTo(this.collection, 'add', render);
 		this.render();
 	},
-	render: function() {
+	render: function(){
+		console.log('rendering');
 		var modelData = this.model.toJSON();
 		var compiledTemplate = this.template(modelData);
 		$('.victim-list').append(compiledTemplate);
-		// this.model.get('completed') ? this.$el.addClass('done') : this.$el.removeClass('done');
-	},
+	}
+
 });

@@ -29,18 +29,18 @@ App.Views.Forms = Backbone.View.extend({
     },
     childElement: function() {
         $("#help-form-after-submission").html(this.template);
-        var data = {
-            name: $('[name=name]').val(),
-            age: $('[name=age]').val(),
-            gender: $('[name=gender]').val(),
-            location: $('[name=location]').val(),
-            description: $('[name=description]').val(),
-            email: $('[name=email]').val(),
-            phone: $('[name=phone]').val()
-        };
-        for (var key in data) {
-            key.empty();
-        }
+        // var data = {
+        //     name: $('[name=name]').val(),
+        //     age: $('[name=age]').val(),
+        //     gender: $('[name=gender]').val(),
+        //     location: $('[name=location]').val(),
+        //     description: $('[name=description]').val(),
+        //     email: $('[name=email]').val(),
+        //     phone: $('[name=phone]').val()
+        // };
+        // for (var key in data) {
+        //     key.empty();
+        // }
     }
 
 });
