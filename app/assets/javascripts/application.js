@@ -36,9 +36,14 @@ var App = {
 
 
 $(function() {
-	App.victims = new App.Collections.Victims();
+	
+    App.victims = new App.Collections.Victims();
 	App.form = new App.Views.Forms({collection: App.victims});
 	App.victims.fetch();
+    // App.seekers = new App.Collections.Seekers();
+    // App.signlog = new App.Views.Signlog({collection: App.seekers});
+    // App.seekers.fetch();
+
 	
 	$('#seek-someone-button').click(goToSearch);
 	$('#i-need-help-button').click(goToAdd);
@@ -50,7 +55,10 @@ var goToSearch = function(){
     	// App.form.remove();
     	// console.log('removing form view');
     	App.victims.fetch();
+        // App.seekers.fetch();
         App.search = new App.Views.Search({collection: App.victims});
+        App.signlog = new App.Views.Signlog({collection: App.seekers});
+
     };
 var goToAdd = function(){
     	$('#page').empty();

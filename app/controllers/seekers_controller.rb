@@ -2,7 +2,13 @@ class SeekersController < ApplicationController
 	
 	
 	def index
+		# gon.seekers = Seeked.find_by_id(gon.my_session_variable)
 		render json: Seeker.all
+	end
+
+	def show
+		@seeker = Seeker.find(params[:id])
+		render json: @seeker
 	end
 
 	def new

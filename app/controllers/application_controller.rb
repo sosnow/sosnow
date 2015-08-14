@@ -42,7 +42,9 @@ class ApplicationController < ActionController::Base
   end
 
   def destroy_seeker_session
+
     session[:seeker_id] = nil
+    
   end
 
 
