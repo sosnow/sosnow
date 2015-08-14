@@ -6,6 +6,7 @@ App.Views.Search = Backbone.View.extend({
         this.template = HandlebarsTemplates['search_box'];
         this.render();
         this.renderAllItems();
+
     },
     renderAllItems: function() {
         //Empties div, inserts table template and then sends each model in the collection to the render function, from newest to oldest
@@ -22,6 +23,7 @@ App.Views.Search = Backbone.View.extend({
     render: function() {
         //renders search page
         this.$el.html(this.template);
+
     },
     events: {
         //click event for search button

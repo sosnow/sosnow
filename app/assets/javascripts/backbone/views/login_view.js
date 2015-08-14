@@ -32,10 +32,25 @@ App.Views.Logins = Backbone.View.extend({
         this.$el.html(templateAfterSign);
    
 		console.log('logged in man!');
+    console.log(data);
+
+    // this.loginSuccess();
      
 	},
   loginSuccess: function () {
     console.log('logged in');
+
+      // $.ajax({
+      //   type: 'GET',
+      //   url: 'seekers/'+gon.my_session_variable,
+      //   success: function(data) {
+      //     console.log('hello');
+      //     console.log(data);
+          
+
+      //   }
+      // });
+
   },
 
   loginFailure: function () {

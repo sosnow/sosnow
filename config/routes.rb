@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'application#index'
 
-  resources :seekers, only: [:index, :new, :create, :update]
+  resources :seekers, only: [:index, :show, :new, :create, :update]
   resources :victims, only: [:index, :create, :update]
   resources :comments, only: [:index, :create]
   resource :account, :controller => 'seekers', :only => [:new, :create]
