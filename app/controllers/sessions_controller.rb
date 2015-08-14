@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+  
   def create
     @seeker = Seeker.find_by_email(params[:email])
     @seeker.authenticate(params[:email], params[:password])

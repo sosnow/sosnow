@@ -1,5 +1,5 @@
 App.Models.Seeker = Backbone.Model.extend({
-	url: '/account',
+	urlRoot: '/seekers',
 	initialize: function() {
 		console.log('new seeker created');
 	}

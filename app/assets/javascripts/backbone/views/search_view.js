@@ -2,15 +2,18 @@ App.Views.Search = Backbone.View.extend({
     el: '#page',
     initialize: function() {
         console.log('search view loaded');
+        console.log(gon.my_session_variable);
         this.template = HandlebarsTemplates['search_box'];
         this.listenTo(this.collection, 'add', console.log('new vic added'));
         this.render();
         this.renderAllItems();
+
     },
     renderAllItems: function() {
     	$('#victim-box').empty();
         $('#victim-box').html(HandlebarsTemplates['search_table']);
         console.log(this.collection);
+        
         this.collection.reversed().each(this.renderItem, this);
     },
     renderItem: function(model) {
@@ -20,6 +23,7 @@ App.Views.Search = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(this.template);
+
     },
     events: {
         'click .search': 'goSearch',
