@@ -17,15 +17,38 @@ App.Views.Signups = Backbone.View.extend({
             email: $('[name=email]').val(),
             password: $('[name=password]').val(),
             password_confirmation: $('[name=password_confirmation]').val(),
-            name: $('[name=name]').val()
+            name: $('[name=name]').val(),
+            location: $('[name=location]').val(),
+            phone: $('[name=phone]').val()
       };
 
+       var data1 = {
+            
+            email: $('[name=email]').val(),
+            password: $('[name=password]').val()
+      };
 
         this.collection.create(data);
-        this.$el.empty();
-        App.signlog = new App.Views.Signlog({collection: App.seekers});
-        App.search = new App.Views.Search({collection: App.victims});
-        
+
+
+        var templateAfterSign = HandlebarsTemplates['search_box'];
+          
+          $.ajax({
+            type: "POST",
+            url: '/sessions',
+            data: data1,
+           success: function(){
+              App.signlog = new App.Views.Signlog({collection: App.seekers});
+              App.search = new App.Views.Search({collection: App.victims});
+           },
+           fail: function(){
+           }
+          });
+
+   
+    console.log('logged in man!');
+    console.log(data);
+           
    
 		console.log('what do you seek?');
      

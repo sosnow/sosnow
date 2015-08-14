@@ -28,7 +28,8 @@ App.Views.Signlog = Backbone.View.extend({
 		});
     },
     events: {
-		'click .log-out': 'logOut'
+		'click .log-out': 'logOut',
+    'click .seeker' : 'loadSeekerPage'
 	},
 	logOut: function() {
 		console.log('log me out bro!');
@@ -41,4 +42,29 @@ App.Views.Signlog = Backbone.View.extend({
         }
 		});
 	},
-  });
+  loadSeekerPage: function() {
+    console.log('hello Seeker');
+   $.ajax({
+        url: '/sessions/new',
+        type: 'GET',
+        success: function(data) {
+            if (data){
+              $.ajax({
+              type: 'GET',
+              url: 'seekers/'+ data,
+              success: function(data) {
+                console.log('hello');
+                console.log(data);
+                var template = HandlebarsTemplates['seeker'];
+                $('#search-bar').empty();
+                $('#search-bar').html(template(data));   
+              }
+                });
+              }
+            }
+    });
+  }
+});
+
+
+
