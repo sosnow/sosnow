@@ -46,24 +46,6 @@ App.Views.Search = Backbone.View.extend({
         $('#victim-box').empty();
         $('#victim-box').html(HandlebarsTemplates['search_table']);
 
-        //Loops through collection
-        // for (var i = 0; i < this.collection.length; i++) {
-        // 	console.log(this.collection.models[i].attributes);
-        // 	var searchName = this.collection.models[i].attributes.name.toLowerCase();
-        	
-        // 	var searchDate = this.collection.models[i].attributes.convCreatedDate;
-
-        //     if (searchName.match(data.name.toLowerCase())) {
-        //         var newResultView = new App.Views.Results({
-        //             model: this.collection.models[i]
-        //         });
-        //     }
-        //     else if (searchDate == data.date){
-        //     	  var newResultView = new App.Views.Results({
-        //             model: this.collection.models[i]
-        //         });
-        //     }
-        // }
         var nameFilter = new Backbone.Collection();
         var locationFilter = new Backbone.Collection();
         var dateFilter = new Backbone.Collection();
