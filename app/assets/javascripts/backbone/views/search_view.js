@@ -39,7 +39,7 @@ App.Views.Search = Backbone.View.extend({
             name: $('[name=name]').val(),
             location: $('[name=location]').val(),
             date: $('#datepicker').val(),
-            need_Rescue: $('[name=safe]').val()
+            need_Rescue: $('input[name="safe"]:checked').val()
         };
         console.log(data);
         //Empties div and mounts table for results
@@ -47,23 +47,63 @@ App.Views.Search = Backbone.View.extend({
         $('#victim-box').html(HandlebarsTemplates['search_table']);
 
         //Loops through collection
-        for (var i = 0; i < this.collection.length; i++) {
-        	console.log(this.collection.models[i].attributes);
-        	var searchName = this.collection.models[i].attributes.name.toLowerCase();
+        // for (var i = 0; i < this.collection.length; i++) {
+        // 	console.log(this.collection.models[i].attributes);
+        // 	var searchName = this.collection.models[i].attributes.name.toLowerCase();
         	
-        	var searchDate = this.collection.models[i].attributes.convCreatedDate;
+        // 	var searchDate = this.collection.models[i].attributes.convCreatedDate;
 
+        //     if (searchName.match(data.name.toLowerCase())) {
+        //         var newResultView = new App.Views.Results({
+        //             model: this.collection.models[i]
+        //         });
+        //     }
+        //     else if (searchDate == data.date){
+        //     	  var newResultView = new App.Views.Results({
+        //             model: this.collection.models[i]
+        //         });
+        //     }
+        // }
+        var nameFilter = new Backbone.Collection();
+        var locationFilter = new Backbone.Collection();
+        var dateFilter = new Backbone.Collection();
+        var safeFilter = new Backbone.Collection();
+
+
+        for (var l = 0; l < this.collection.length; l++) {
+        	console.log(this.collection.models[l].attributes.need_rescue);
+        	var searchSafe = this.collection.models[l].attributes.need_rescue;
+            if (searchSafe.toString() == data.need_Rescue) {
+                safeFilter.add(this.collection.models[l]);
+            }
+        	}
+        	console.log(safeFilter);
+        for (var i = 0; i < safeFilter.length; i++) {
+        	var searchName = safeFilter.models[i].attributes.name.toLowerCase();
             if (searchName.match(data.name.toLowerCase())) {
-                var newResultView = new App.Views.Results({
-                    model: this.collection.models[i]
-                });
+                nameFilter.add(safeFilter.models[i]);
             }
-            else if (searchDate == data.date){
-            	  var newResultView = new App.Views.Results({
-                    model: this.collection.models[i]
-                });
+        	}
+        	console.log(nameFilter);
+        	for (var k = 0; k < nameFilter.length; k++) {
+        		var searchLoc = nameFilter.models[k].attributes.location.toLowerCase();
+            if (searchLoc.match(data.location.toLowerCase())) {
+                locationFilter.add(nameFilter.models[k]);
             }
+        	}
+        	console.log(locationFilter);
+        for (var j = 0; j<locationFilter.length; j++){
+        	var searchDate = locationFilter.models[j].attributes.convCreatedDate;
+          if ((searchDate == data.date) || (data.date === "")){
+             dateFilter.add(locationFilter.models[j]);
+	          var newResultView = new App.Views.Results({
+	              model: dateFilter.models[j]
+	          });
         }
+        console.log(dateFilter);
+      }
+
+        
 	},
 	loadSignup: function(){
         $('#search-bar').empty();
