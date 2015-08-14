@@ -1,8 +1,10 @@
 <div id="help-form">
 
+  <form>
+
   <div id="name-input-div" class="input-div">  
-    <label for="name">Name:</label><br>
-    <input type="text" class="input-text" id="name" name="name" placeholder="Enter full name">
+    <div class="form-section-label"><label for="name">Name:</label></div>
+    <input type="text" class="input-text" id="name" name="name">
   </div>
 
   <div id="age-input-div" class="input-div">  
@@ -35,6 +37,7 @@
   </div>
 
   <br>
+  <br>
 
   <div id="gender-input-div" class="input-div">  
     <ul class="radio-button-ul">
@@ -56,41 +59,39 @@
   <br>
   <br>
 
-  <div id="location-input-div" class="input-div">Location:
-    <div id="location-from-ip-div">
+  <div id="location-input-div" class="input-div">
+    <div id="location-label" class="form-section-label">Location:</div>
+    <div id="location-from-ip-div" style="display: none;">
       <input type="text" id="location-from-ip-display-box" class="input-text" readonly>
       <div id="location-from-ip-confirmation" class="line-message-div">
-        Is this correct?
-        <button id="correct-location-button">Yes</button>
-        <button id="incorrect-location-button">No</button>
+        <div class="line-message">Is this accurate?</div>
+        <a href="#" id="correct-location-button" class='form-button'><center>Yes</center></a>
+        <a href="#" id="incorrect-location-button" class='form-button'><center>No</center></a>
       </div>
     </div>
-    <div id="locationField" class="hide">
-      <input id="autocomplete" class="input-text" placeholder="Enter your location" onFocus="geolocate()" type="text"></input>
-      <div id="location-from-ip-confirmation" class="line-message-div">
-        <button id="ok-location-button" class='hide'>OK</button>
+    <div id="locationField">
+      <input id="autocomplete" class="input-text" onFocus="geolocate()" type="text" placeholder=""></input>
+      <div id="location-from-autocomplete-confirmation" style='display: none;' class="line-message-div">
+        <a href="#" id="ok-location-button" class='form-button'><center>OK</center></a>
+        <a href="#" id="change-location-button" class='form-button'><center>Change</center></a>
       </div>
     </div>
   </div>
 
   <br>
 
-  <div id="location-more-info-input-div" class="input-div hide">
-    <label for="location-more-info">Enter more info about your location:</label>
-    <textarea id="location-more-info" class="input-textarea" rows="3" name="description" form="help-needed" placeholder="address, floor, room, etc."></textarea>
+  <div id="location-more-info-input-div" style="display: none;" class="input-div">
+    <div class="form-section-label"><label for="location-more-info">Additional info:</label></div>
+    <textarea id="location-more-info" class="input-textarea" rows="3" name="description" form="help-needed" placeholder="street address, floor, emergency situation, etc."></textarea>
   </div>
-
-  <br>
 
   <div id="phone-input-div" class="input-div">
-    <label for"phone">Phone:</label><br>
+    <div class="form-section-label"><label for"phone">Phone:</label></div>
     <input id="phone" type="text" name="phone" class="input-text">
   </div>
 
-  <br>
-
   <div id="email-input-div" class="input-div">
-    <label for="email">Email:</label><br>
+    <div class="form-section-label"><label for="email">Email:</label></div>
     <input id="email" type="text" name="email" class="input-text">
   </div>
 
@@ -98,62 +99,230 @@
 
   <input type="hidden" id="geopoint" name="geopoint">
 
-  <button id="submit">Request Help</button>
+  </form>
+
+  <button>Request Help</button>
 
 </div>
 
 <script type="text/javascript">
 
-$(window).ready(function() {
+$(document).ready(function() {
 
-  $.ajax({
-    type: 'GET',
-    url: "http://ip-api.com/json",
-    success: function(data) {
-      $('#geopoint').val('['+ data.lat + ',' + data.lon + ']');
-      $('#location-from-ip-display-box').val(data.city +', ' + data.region + ', ' + data.country);
-    },
-    error: function() {
-      $('#location-from-ip-div').addClass('hide');
-      $('#locationField').removeClass('hide');
+  $('form').each(function() { this.reset() });
+
+  // Getting Geolocation from IP address:
+
+  var latitudeFromIp = undefined;
+  var longitudeFromIp = undefined;
+  var cityFromIp = undefined;
+  var regionFromIp = undefined;
+  var countryFromIp = undefined;
+  var successGettingLocationFromIp = false;
+
+  var getLocationFromIp = function() {
+    $.ajax({
+      cache: false,
+      type: 'GET',
+      datatype: 'json',
+      url: 'https://freegeoip.net/json/',
+      success: function(data) {
+        $('#location-label').html('Trying to get location...');
+
+        latitudeFromIp = data.latitude;
+        longitudeFromIp = data.longitude;
+        cityFromIp = data.city;
+        regionFromIp = data.region_code;
+        countryFromIp = data.country_name;
+        successGettingLocationFromIp = true;
+
+        $('#geopoint').val('[' + latitudeFromIp + ',' + longitudeFromIp + ']');
+        $('#location-from-ip-display-box').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
+        $('#location-label').html('Location:');
+        $('#locationField').hide();
+        $('#location-from-ip-div').show();
+
+        console.log('getLocationFromIp AJAX request: success');
+        console.log('geopoint from IP: [' + latitudeFromIp + ',' + longitudeFromIp + ']');
+        console.log('#geopoint value updated via IP to: ' + $('#geopoint').val() ); 
+        console.log('location found via IP: ' + $('#location-from-ip-display-box').val() ); 
+      },
+      error: function() {
+        console.log('getLocationFromIp AJAX request: error');
+        $('#location-label').html('Location:');
+        $('#location-from-ip-div').hide();
+        $('#locationField').show();
+      },
+      timeout: 5000,
+      complete: function(jqXHR, textStatus) { 
+        if (textStatus == "timeout") {
+          console.log('getLocationFromIp AJAX request: timeout');
+        }
+      }
+    });
+  };
+  getLocationFromIp();
+
+
+  // Getting Geolocation from HTML5:
+
+  var latitudeFromHtml5 = undefined;
+  var longitudeFromHtml5 = undefined;
+
+  var showPosition = function(position) {
+    $('#location-label').html('Getting location...');
+    latitudeFromHtml5 = position.coords.latitude;
+    longitudeFromHtml5 = position.coords.longitude;
+    $.ajax({
+      cache: false,
+      type: 'GET',
+      dataType: 'json',
+      url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitudeFromHtml5 + ',' + longitudeFromHtml5 + '&sensor=true',
+      success: function(data) {
+        $('#geopoint').val('['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
+
+        var locality = undefined;
+        var administrativeAreaLevel1 = undefined;
+        var administrativeAreaLevel2 = undefined;
+        var country = undefined;
+
+        for (var i = 0; i < (data.results).length; i++) {
+          for (var j = 0; j < (data.results[i].address_components).length; j++) {
+            var localityString = 'locality'
+            if ((data.results[i].address_components[j].types).indexOf('locality') !== -1) {
+              locality = data.results[i].address_components[j].long_name
+            }
+            break;
+          }
+          for (var j = 0; j < (data.results[i].address_components).length; j++) {
+            if ((data.results[i].address_components[j].types).indexOf('administrative_area_level_1') !== -1) {
+              administrativeAreaLevel1 = data.results[i].address_components[j].short_name
+            }
+            break;
+          }
+          for (var j = 0; j < (data.results[i].address_components).length; j++) {
+            if ((data.results[i].address_components[j].types).indexOf('administrative_area_level_2') !== -1) {
+              administrativeAreaLevel2 = data.results[i].address_components[j].long_name
+            }
+            break;
+          }
+          for (var j = 0; j < (data.results[i].address_components).length; j++) {
+            if ((data.results[i].address_components[j].types).indexOf('country') !== -1) {
+              country = data.results[i].address_components[j].long_name
+            }
+            break;
+          }
+        }
+
+        var locationComponentsArray = [];
+        var locationComponentsString = '';
+
+        if (locality) {
+          locationComponentsArray.push(locality);
+        } else if (administrativeAreaLevel2) {
+          locationComponentsArray.push(administrativeAreaLevel2);
+        }
+        if (administrativeAreaLevel1) {
+          locationComponentsArray.push(administrativeAreaLevel1);
+        }
+        if (country) {
+          locationComponentsArray.push(country);
+        }
+        locationComponentsString = locationComponentsArray.join(', ');
+
+        $('#geopoint').val('['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
+        $('#location-from-ip-display-box').val(locationComponentsString);
+        $('#location-label').html('Location:');
+        $('#locationField').hide();
+        $('#location-from-ip-div').show();
+
+        console.log('showPosition AJAX request: success');
+        console.log('geopoint from HTML5: ['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
+        console.log('#geopoint value updated via HTML5 to: ' + $('#geopoint').val() );
+        console.log('location found via HTML5: ' + $('#location-from-ip-display-box').val() ); 
+
+      },
+      error: function() {
+        console.log('showPosition AJAX request: error');
+        $('#location-label').html('Location:');
+        if (successGettingLocationFromIp === false) {
+          $('#location-from-ip-div').hide();
+          $('#locationField').show();
+        }
+      },
+      timeout: 8000,
+      complete: function(jqXHR, textStatus) { 
+        if (textStatus == "timeout") {
+          console.log('showPosition AJAX request: timeout');
+        }
+      }
+    });
+  }
+
+  var showError = function() {
+    console.log('showError');
+    $('#location-label').html('Location:');
+    $('#location-from-ip-div').hide();
+    $('#locationField').show();
+  }
+
+  var getLocationFromHtml5 = function() {
+    $('#location-label').html('Trying to get location...');
+    if (navigator.geolocation) {
+      console.log('getLocationFromHtml5 if is true')
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
     }
-  });
+  }
+  getLocationFromHtml5();
 
-  $('#correct-location-button').on('click', function () {
-    $('#locationField').addClass('hide');
-    $('#location-from-ip-div').removeClass('hide');
+
+  // Event listeners:
+
+  $('#correct-location-button').on('click', function() {
+    $('#location-from-ip-div').show();
   });
 
   $('#incorrect-location-button').on('click', function() {
-    $('#location-from-ip-div').addClass('hide');
-    $('#location-more-info-input-div').addClass('hide')
-    $('#locationField').removeClass('hide');
+    $('#location-from-ip-div').hide();
+    $('#location-more-info-input-div').hide();
+    $('#autocomplete').attr('placeholder', 'Enter location');
+    $('#locationField').show();
   });
 
-  $('#location-from-ip-display-box').on('click', function() {
-    $('#location-from-ip-div').addClass('hide');
-    $('#locationField').removeClass('hide');
-  });
-
-  $('#autocomplete').change(function () {
-    if ( ( $('#autocomplete').val() ).length > 0) {
-      $('#ok-location-button').removeClass('hide'); 
+  $('#autocomplete').on('keyup', function() {
+    if (( $('#autocomplete').val() ).length > 0) {
+      $('#location-from-autocomplete-confirmation').show(); 
+      $('#ok-location-button').css('background', '');
     }
-  })
+  });
 
-  $('#correct-location-button').on('click', function () {
-    $('#location-more-info-input-div').removeClass('hide');
-  })  
+  $('#correct-location-button').on('click', function() {
+    $('#location-more-info-input-div').show();
+  });
 
-  $('#ok-location-button').on('click', function () {
-    $('#location-more-info-input-div').removeClass('hide');
+  $('#ok-location-button').on('click', function() {
+    $('#location-more-info-input-div').show();
     var confirmedPlace = autocomplete.getPlace();
     var confirmedPlaceLatitude = confirmedPlace.geometry.location.G;
     var confirmedPlaceLongitude = confirmedPlace.geometry.location.K;
     $('#geopoint').val('['+ confirmedPlaceLatitude + ',' + confirmedPlaceLongitude + ']');
-    console.log($('#geopoint').val());
-  })
+    console.log('#geopoint value updated via OK button to: ' + $('#geopoint').val());
+  });
 
+  $('#correct-location-button').on('click', function() {
+    $(this).css('background', 'yellow');
+  });
+
+  $('#ok-location-button').on('click', function() {
+    $('#change-location-button').css('background', '');
+    $(this).css('background', 'yellow');
+  });
+
+  $('#change-location-button').on('click', function() {
+    $('#autocomplete').val('');
+    $('#ok-location-button').css('background', '');
+    $('#location-more-info-input-div').hide();
+  });
 });
 
 // Using the autocomplete feature of the Google Places API
@@ -163,8 +332,9 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
+    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete'))
+    // , {types: ['geocode']}
+  );
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
@@ -173,7 +343,8 @@ function initAutocomplete() {
     var changedPlaceLatitude = changedPlace.geometry.location.G;
     var changedPlaceLongitude = changedPlace.geometry.location.K;
     $('#geopoint').val('['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']');
-    console.log($('#geopoint').val());
+    $('location-from-autocomplete-confirmation').show();
+    console.log('#geopoint value updated via place_changed to: ' + $('#geopoint').val());
   });
 }
 

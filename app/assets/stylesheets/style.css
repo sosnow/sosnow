@@ -2,11 +2,7 @@ body {
 	font-family: monaco, Consolas, 'Lucida Console', monospace;
 	font-size: 14px;
 	color: black;
-
-}
-
-.hide {
-	display: none;
+	background-color: DarkRed;
 }
 
 #top-bar {
@@ -31,19 +27,10 @@ body {
 	right: 20px;
 }
 
-#page-container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: DarkRed;
-	top: 50px;
-}
-
 #page {
 	background-color: white;
 	padding: 50px 0;
 	width: 90%;
-	height: 100%;
 	margin: 0 auto;
 }
 
@@ -61,15 +48,52 @@ body {
 	width: 360px; 
 }
 
+.pac-icon {
+	display: none;
+}
+
+.form-button {
+	display: block;
+	width: 70px;
+	margin: 0 5px 0 0;
+	float: left;
+	border: 1px solid #CCC;
+	border-radius: 50px;
+	cursor:pointer;
+}
+
+.form-button-a-tag:link {
+	color: black; 
+    background: white;
+    text-decoration:none;
+}
+
+.form-button-a-tag:visited {
+	color: black; 
+    background: white;
+    text-decoration:none;
+}
+
+.form-button-a-tag:hover { 
+	color: black;
+    background-color: #DDD;
+    text-decoration:none;
+}
+
+.form-button-a-tag:active {
+	color: black; 
+    background-color: #DDD;
+    text-decoration:none;
+}
+
 .radio-button-ul {
-     list-style-type:none;
-     margin:25px 0 0 0;
-     padding:0;
+	list-style-type:none;
+	padding:0;
 }
 
 .radio-button-ul li {
-     float:left;
-     margin:0 5px 0 0;
+	float:left;
+	margin:0 5px 0 0;
     width:80px;
     height:30px;
     position:relative;
@@ -84,10 +108,6 @@ body {
     bottom:0;
 }
 
-.pac-icon {
-	display: none;
-}
-
 .radio-button-ul input[type="radio"] {
     opacity:0.01;
     z-index:100;
@@ -99,15 +119,20 @@ body {
 }
 
 .radio-button-ul label {
-     padding:5px;
-     border:1px solid #CCC; 
-     border-radius: 50px;
-     cursor:pointer;
-    z-index:90;
+	padding:5px;
+	border:1px solid #CCC; 
+	border-radius: 50px;
+	cursor:pointer;
+	z-index:90;
 }
 
 .radio-button-ul label:hover {
      background:#DDD;
+}
+
+.input-div {
+	clear: both;
+	margin: 20px 0 0 0;
 }
 
 .input-text {
@@ -122,6 +147,20 @@ body {
 	font-size: 18px;
 }
 
+.line-message {
+	float: left;
+	margin: 0 5px 0 0;
+}
+
 .line-message-div {
-	height: 18px;
+	position: relative;
+	top: 10px;
+}
+
+.form-section-label {
+	margin: 0 0 5px 0;
+}
+
+.request-help-button {
+	background: white;
 }
