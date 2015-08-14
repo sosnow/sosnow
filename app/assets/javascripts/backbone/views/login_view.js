@@ -19,43 +19,25 @@ App.Views.Logins = Backbone.View.extend({
             password: $('[name=password]').val()
       };
         var templateAfterSign = HandlebarsTemplates['search_box'];
-
-        console.log(data);
           
           $.ajax({
             type: "POST",
             url: '/sessions',
-            data: data
-           
+            data: data,
+           success: function(){
+              App.signlog = new App.Views.Signlog({collection: App.seekers});
+              App.search = new App.Views.Search({collection: App.victims});
+           },
+           fail: function(){
+           }
           });
-        this.$el.empty();
-        this.$el.html(templateAfterSign);
+
    
-		console.log('logged in man!');
+    console.log('logged in man!');
     console.log(data);
 
     // this.loginSuccess();
      
-	},
-  loginSuccess: function () {
-    console.log('logged in');
-
-      // $.ajax({
-      //   type: 'GET',
-      //   url: 'seekers/'+gon.my_session_variable,
-      //   success: function(data) {
-      //     console.log('hello');
-      //     console.log(data);
-          
-
-      //   }
-      // });
-
   },
-
-  loginFailure: function () {
-    console.log('failed!!');
-  }
-
 });
 

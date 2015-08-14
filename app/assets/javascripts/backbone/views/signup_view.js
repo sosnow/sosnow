@@ -19,13 +19,13 @@ App.Views.Signups = Backbone.View.extend({
             password_confirmation: $('[name=password_confirmation]').val(),
             name: $('[name=name]').val()
       };
-        var templateAfterSign = HandlebarsTemplates['search_box'];
 
-        console.log(data);
 
         this.collection.create(data);
         this.$el.empty();
-        this.$el.html(templateAfterSign);
+        App.signlog = new App.Views.Signlog({collection: App.seekers});
+        App.search = new App.Views.Search({collection: App.victims});
+        
    
 		console.log('what do you seek?');
      
