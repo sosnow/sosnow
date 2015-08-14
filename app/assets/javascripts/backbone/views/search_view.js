@@ -26,7 +26,9 @@ App.Views.Search = Backbone.View.extend({
     },
     events: {
     	//click event for search button
-        'click .search': 'goSearch',
+        // 'click .search': 'goSearch',
+        'keyup': 'goSearch',
+        'click [type="radio"]':'goSearch',
       //click event for sign up button
         'click .sign-up': 'loadSignup',
       //click event for log in button  
@@ -46,6 +48,8 @@ App.Views.Search = Backbone.View.extend({
         $('#victim-box').empty();
         $('#victim-box').html(HandlebarsTemplates['search_table']);
 
+
+        //Loops through collection, adding results to new collections. Cascades need_rescue->name->location->date
         var nameFilter = new Backbone.Collection();
         var locationFilter = new Backbone.Collection();
         var dateFilter = new Backbone.Collection();
