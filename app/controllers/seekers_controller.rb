@@ -44,6 +44,6 @@ class SeekersController < ApplicationController
 	private
 
    def seeker_params
-      params.require(:seeker).permit(:name, :email, :password, :password_confirmation)
+      params.require(:seeker).permit(:name, :email, :password, :password_confirmation, :location, :phone)
    end
 end
