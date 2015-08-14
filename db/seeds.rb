@@ -7,10 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-5.times do 
+40.times do 
 Victim.create({
   name: FFaker::Name.name,
   description: FFaker::Lorem.sentence,
+  location: FFaker::Address.city,
   geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng]     
   })
 
