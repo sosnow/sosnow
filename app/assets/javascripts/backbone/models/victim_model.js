@@ -20,8 +20,7 @@ App.Models.Victim = Backbone.Model.extend({
     },
     convCreatedDate: function(){
         //saves converted date to database
-        this.save({convCreatedDate: this.attributes.convCreatedDate});
-
+        this.save({convCreatedDate: this.attributes.convCreatedDate}, {patch: true});
     }
 
 });
