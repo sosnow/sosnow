@@ -4,6 +4,7 @@ App.Views.Search = Backbone.View.extend({
     initialize: function() {
         //sets template
         this.template = HandlebarsTemplates['search_box'];
+        
         this.render();
         this.renderAllItems();
 
@@ -13,6 +14,7 @@ App.Views.Search = Backbone.View.extend({
         $('#victim-box').empty();
         $('#victim-box').html(HandlebarsTemplates['search_table']);
         this.collection.reversed().each(this.renderItem, this);
+
     },
     renderItem: function(model) {
         //Sends each model into the View to be rendered
@@ -33,7 +35,8 @@ App.Views.Search = Backbone.View.extend({
         //click event for sign up button
         'click .sign-up': 'loadSignup',
         //click event for log in button  
-        'click .log-in': 'loadLogin'
+        'click .log-in': 'loadLogin',
+        'click .see-victim': 'showModal'
 
     },
     goSearch: function() {
@@ -99,5 +102,13 @@ App.Views.Search = Backbone.View.extend({
         App.login = new App.Views.Logins({
             collection: App.seekers
         });
+    },
+    showModal: function(e) {
+        console.log('hello modal');
+        var id = $(e.target).closest('td').data('value');
+        console.log(id);
+        var result = this.collection.fetchById(id);
     }
 });
+
+

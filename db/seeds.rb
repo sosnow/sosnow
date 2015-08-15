@@ -30,7 +30,8 @@ end
 2.times do 
 Comment.create({
   description: FFaker::Lorem.sentence,
-  victim_id: 1     
+  victim_id: 1,  
+  seeker_id: 1   
   })
 
 end

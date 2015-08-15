@@ -13,5 +13,6 @@
  *= require normalize.css
  *= require_tree .
  *= require style.css
+  *= require modal.css
  *= require jquery-ui
  */
