@@ -17,7 +17,9 @@
 <br>
 <div id='comment-box'>
 <h1> Comments </h1>
-<input type='text area' name='comment' class='textbox' placeholder='Enter your comments here'>
+<input type='text area' name='comment' class='textbox' data-value={{this.[0].id}} placeholder='Enter your comments here'>
+<input value={{this.[0].id}} type='hidden' id='victim-id-comment'>
+
 <button class='submit-comment'>submit</button>
 </div>
 
