@@ -6,12 +6,12 @@ App.Collections.Victims = Backbone.Collection.extend({
 
     },
     fetchById: function(id) {
-        this.fetch({
+        $.ajax({
             url: this.url + '/' + id,
-            reset: false,
-            success: function(coll, data) {
-                console.log(data);
-                
+            type: 'GET',
+            success: function(data) {
+                console.log(data[0]);
+
                 var modal = new App.Views.Modal({model:data});
                 // App.Views.Search.modal.set(data);
             }
