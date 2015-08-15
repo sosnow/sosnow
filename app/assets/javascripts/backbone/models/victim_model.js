@@ -2,6 +2,7 @@ App.Models.Victim = Backbone.Model.extend({
 	initialize: function() {
 		console.log('new victim created');
 		this.dateConversion();
+        this.convCreatedDate();
 	},
 	dateConversion: function(){
 		//Converts Date from PostgreSQL timestamp to Western Format
@@ -15,7 +16,12 @@ App.Models.Victim = Backbone.Model.extend({
     		else
     			return m.getMonth() + 1;
     	};
-    	this.attributes.convCreatedDate = mmMonth(jsSearchDate) + '/' + jsSearchDate.getDate() + '/' + jsSearchDate.getFullYear();
-	}
+        this.attributes.convCreatedDate = mmMonth(jsSearchDate) + '/' + jsSearchDate.getDate() + '/' + jsSearchDate.getFullYear();
+    },
+    convCreatedDate: function(){
+        //saves converted date to database
+        this.save({convCreatedDate: this.attributes.convCreatedDate});
+
+    }
 
 });

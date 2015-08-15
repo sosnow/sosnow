@@ -1,21 +1,27 @@
 
 <div id='seeker-info'>
 <h1>Seeker Contact Info</h1>
-<p>Name : {{name}}</p>
-<p>Phone : {{phone}}</p>
-<p>Location : {{location}}</p>
-<p>Email : {{email}}</p>
+<p>Name : {{this.[0].name}}</p>
+<p>Phone : {{this.[0].phone}}</p>
+<p>Location : {{this.[0].location}}</p>
+<p>Email : {{this.[0].email}}</p>
 </div>
 
 
 <div id='victim-added'>
-<h4> Victim's who need rescue</h4>
+<h4> Victims who need rescue</h4>
 <table class = 'victim-list'>
 	<tr>
 		<th>Name</th>
 		<th>Location</th> 
 		<th>DateTime</th>
 	</tr>
-	
+	{{#each this.[1]}}
+	<tr>
+		<td class='see-victim' data-value={{id}}>{{name}}</td>
+		<td class='see-victim' data-value={{id}}>{{location}}</td>
+		<td class='see-victim' data-value={{id}}>{{convCreatedDate}}</td>
+	</tr>
+	{{/each}}
 </table>
 </div>

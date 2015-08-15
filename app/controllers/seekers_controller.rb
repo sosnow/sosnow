@@ -8,7 +8,8 @@ class SeekersController < ApplicationController
 
 	def show
 		@seeker = Seeker.find(params[:id])
-		render json: @seeker
+		@victim = @seeker.victims
+		render json: [@seeker, @victim]
 	end
 
 	def new
