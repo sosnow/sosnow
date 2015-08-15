@@ -3,13 +3,17 @@ App.Collections.Victims = Backbone.Collection.extend({
     model: App.Models.Victim,
     initialize: function() {
         console.log('New Victims Collection Created');
+
     },
     fetchById: function(id) {
         this.fetch({
             url: this.url + '/' + id,
             reset: false,
             success: function(coll, data) {
-                App.modal.model.set(data);
+                console.log(data[0]);
+                
+                var modal = new App.Views.Modal({model:data[0]});
+                // App.Views.Search.modal.set(data);
             }
         });
     },
@@ -20,3 +24,4 @@ App.Collections.Victims = Backbone.Collection.extend({
 		return collection;
 	}
 });
+

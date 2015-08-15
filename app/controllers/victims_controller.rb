@@ -4,6 +4,14 @@ class VictimsController < ApplicationController
 		render json: Victim.all
 	end
 
+	def show
+		@victim = Victim.find(params[:id])
+		@seeker = @victim.seekers
+		@comment = @victim.comments
+		
+		render json: [@victim, @comment, @seeker]
+	end
+
 	def create
 		@victim = Victim.create(victim_params)
 		render json: @victim
