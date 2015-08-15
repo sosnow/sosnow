@@ -4,6 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.text :description
       t.references :seeker
       t.references :victim
+      t.string "convCreatedDate"
 
       t.timestamps null: false
     end

@@ -18,7 +18,7 @@ class VictimsController < ApplicationController
 	private
 
 	def victim_params
-		params.require(:victim).permit(:name, :age, :gender, :location, :geolocation, :email, :phone, :description, :need_rescue, :ip)
+		params.require(:victim).permit(:name, :age, :gender, :location, :geolocation, :email, :phone, :description, :need_rescue, :ip, :convCreatedDate, :injured)
 	end
 
 end

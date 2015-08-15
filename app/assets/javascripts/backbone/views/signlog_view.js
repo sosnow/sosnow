@@ -3,7 +3,6 @@ App.Views.Signlog = Backbone.View.extend({
 
     initialize: function() {
         console.log('sign and log in view loaded');
-        console.log(gon.my_session_variable);
     	$.ajax({
 		    url: '/sessions/new',
 		    type: 'GET',
@@ -13,10 +12,8 @@ App.Views.Signlog = Backbone.View.extend({
               type: 'GET',
               url: 'seekers/'+ data,
               success: function(data) {
-                console.log('hello');
-                console.log(data);
                 var template = HandlebarsTemplates['signup_login'];
-                $('#sign-log').html(template(data));   
+                $('#sign-log').html(template(data[0]));   
               }
                 });
 		          }
@@ -24,6 +21,10 @@ App.Views.Signlog = Backbone.View.extend({
               var template = HandlebarsTemplates['signup_login']
               $('#sign-log').html(template);
             }
+          },
+          fail: function(){
+              var template = HandlebarsTemplates['signup_login']
+              $('#sign-log').html(template);
           }
 		});
     },
