@@ -1,7 +1,8 @@
 App.Views.Forms = Backbone.View.extend({
     el: '#page',
     events: {
-        'click #submit': 'addVictim',
+        'click #first-request-help-button': 'addVictim',
+        'click #submit-all-button': 'addVictim'
     },
     initialize: function() {
         console.log('Form View Loaded');
@@ -17,6 +18,7 @@ App.Views.Forms = Backbone.View.extend({
             age: $('[name=age]').val(),
             gender: $('[name=gender]').val(),
             location: $('[name=location]').val(),
+            geolocation: $('[name=geolocation').val(),
             description: $('[name=description]').val(),
             email: $('[name=email]').val(),
             phone: $('[name=phone]').val()
