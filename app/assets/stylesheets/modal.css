@@ -1,0 +1,13 @@
+#modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,.9);
+    color: lightgrey;
+    margin: 0 auto;
+    text-align: center;
+    overflow: scroll;
+    height: 100%;
+    margin-top: 50px;
+
+}

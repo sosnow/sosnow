@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root to: 'application#index'
 
   resources :seekers, only: [:index, :show, :new, :create, :update]
-  resources :victims, only: [:index, :create, :update]
-  resources :comments, only: [:index, :create]
+  resources :victims, only: [:index, :show, :create, :update]
+  resources :comments, only: [:index, :show, :create]
   resource :account, :controller => 'seekers', :only => [:new, :create]
 
   get 'sessions/new' => 'sessions#new'
