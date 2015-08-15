@@ -27,11 +27,46 @@ Seeker.create({
 
 end
 
-2.times do 
+
 Comment.create({
   description: FFaker::Lorem.sentence,
-  victim_id: 1,  
+  victim_id: 40,  
   seeker_id: 1   
   })
 
-end
+
+
+
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: 40,  
+  seeker_id: 2   
+  })
+
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: 40,  
+  seeker_id: 3  
+  })
+
+
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: 39,  
+  seeker_id: 4   
+  })
+
+
+
+
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: 39,  
+  seeker_id: 5   
+  })
+
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: 39,  
+  seeker_id: 6  
+  })

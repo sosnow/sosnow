@@ -9,7 +9,6 @@ App.Views.Modal = Backbone.View.extend({
 	render: function() {
 		console.log(this.model);
 		this.$el.html(this.template(this.model));
-
 	},
 	showModal: function() {
 		this.render();
@@ -25,12 +24,9 @@ App.Views.Modal = Backbone.View.extend({
 	},
 	showComments: function() {
 		console.log('show my comments bro!');
-		var data = {
-                description: $('[name=comment]').val()
-            };
-            var comment = $('[name=comment]').val();
-            var tag = $('<div>').html(comment).addClass('showComment');
-        $('#comment-list').append(tag);
+		    var comment = $('[name=comment]').val();
+            var tag = $('<p>').html(comment).addClass('showComment');
+        $('#comment-box').append(tag);
 
 	}
 });

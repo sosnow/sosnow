@@ -10,9 +10,9 @@ App.Collections.Victims = Backbone.Collection.extend({
             url: this.url + '/' + id,
             reset: false,
             success: function(coll, data) {
-                console.log(data[0]);
+                console.log(data);
                 
-                var modal = new App.Views.Modal({model:data[0]});
+                var modal = new App.Views.Modal({model:data});
                 // App.Views.Search.modal.set(data);
             }
         });
