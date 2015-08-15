@@ -106,7 +106,6 @@ App.Views.Search = Backbone.View.extend({
     showModal: function(e) {
         console.log('hello modal');
         var id = $(e.target).closest('td').data('value');
-        console.log(id);
         var result = this.collection.fetchById(id);
     }
 });
