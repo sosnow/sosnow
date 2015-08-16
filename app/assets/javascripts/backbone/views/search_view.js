@@ -14,11 +14,13 @@ App.Views.Search = Backbone.View.extend({
         //Empties div, inserts table template and then sends each model in the collection to the render function, from newest to oldest
         $('#victim-box').empty();
         $('#victim-box').html(HandlebarsTemplates['search_table']);
+        $('.victim-list').prepend('<div><b>Recently Added</b></div>');
         this.collection.reversed().each(this.renderItem, this);
-
+        var data = this.collection.reversed().toJSON();
+        $('#recent-map').html(HandlebarsTemplates['map_view'](data));
     },
     triggeredNew: function(){
-        alert('A NEW USER WAS ADDED');
+        // alert('A NEW USER WAS ADDED');
     },
     renderItem: function(model) {
         //Sends each model into the View to be rendered
@@ -89,7 +91,7 @@ App.Views.Search = Backbone.View.extend({
             }
         }
         for (var j = 0; j < locationFilter.length; j++) {
-            var searchDate = locationFilter.models[j].attributes.convCreatedDate;
+            var searchDate = locationFilter.models[j].attributes.convcreateddate;
             if ((searchDate == data.date) || (data.date === "")) {
                 dateFilter.add(locationFilter.models[j]);
                 var newResultView = new App.Views.Results({
