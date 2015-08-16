@@ -11,8 +11,8 @@ App.Collections.Victims = Backbone.Collection.extend({
             type: 'GET',
             success: function(data) {
                 console.log(data[0]);
-                
-                var modal = new App.Views.Modal({model:data[0]});
+
+                var modal = new App.Views.Modal({model:data});
                 // App.Views.Search.modal.set(data);
             }
         });

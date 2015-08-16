@@ -1,11 +1,13 @@
 <div id='victim-model'>
-<h1>{{name}}</h1>
-<p>{{age}}</p>
-<p>{{gender}}</p>
-<p>{{phone}}</p>
-<p>{{email}}</p>
-<p>{{location}}</p>
-<p>{{description}}</p>
+
+<h1>{{this.[0].name}}</h1>
+<p>{{this.[0].age}}</p>
+<p>{{this.[0].gender}}</p>
+<p>{{this.[0].phone}}</p>
+<p>{{this.[0].email}}</p>
+<p>{{this.[0].location}}</p>
+<p>{{this.[0].description}}</p>
+
 </div>
 {{#if seeker}}
 <p><button class='add'>Help</button></p>
@@ -15,12 +17,21 @@
 <br>
 <div id='comment-box'>
 <h1> Comments </h1>
-<input type='text area' name='comment' class='textbox' placeholder='Enter your comments here'>
+<input type='text area' name='comment' class='textbox' data-value={{this.[0].id}} placeholder='Enter your comments here'>
+<input value={{this.[0].id}} type='hidden' id='victim-id-comment'>
+
 <button class='submit-comment'>submit</button>
 </div>
 
 <div id='comment-list'>
+{{#each this.[1]}}
+
+<div class='comment-seeker-name'><p>{{this.[2].name}}</p></div>
+
+	<div class='comment-box'><p>{{description}}</p></div>
+{{/each}}
 </div>
 
 
 <p><button class='close'>close</button></p>
+
