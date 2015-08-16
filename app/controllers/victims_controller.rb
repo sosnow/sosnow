@@ -6,10 +6,11 @@ class VictimsController < ApplicationController
 
 	def show
 		@victim = Victim.find(params[:id])
-		@seeker = @victim.seekers
+		# @seeker = @victim.seekers
 		@comment = @victim.comments
-		
-		render json: [@victim, @comment, @seeker]
+		# @seeker = Comment.joins(:victim, :seeker)
+		@seeker = Comment.joins('seeker_id' => 'seekers.id')
+		render json: [@seeker]
 	end
 
 	def create
