@@ -4,23 +4,11 @@ $(document).ready(function() {
 
   additionalPersonXForm = $('#additional-people-invisible').html();
 
-  $('#autocomplete').on('keyup', function(e) {
+  $('#autocomplete').on('keyup', function() {
     if (( $('#autocomplete').val() ).length > 0) {
       $('#location-from-autocomplete-confirmation').show(); 
       $('#ok-location-button').css('background', '');
     }
-  });
-
-  $('#description').on('keyup', function() {
-    firstPersonDescription = $('#description').val();
-  });
-
-  $('#phone').on('keyup', function() {
-    firstPersonPhone = $('#phone').val();
-  });
-
-  $('#email').on('keyup', function() {
-    firstPersonEmail = $('#email').val();
   });
 
   $('#first-request-help-button').on('click', function() {
@@ -70,7 +58,11 @@ $(document).ready(function() {
   });
 
   $('#first-request-help-button').on('click', function() {
-    additionalPeopleSecondDescription = 'Person entered into the data base by ' + firstPersonName + ', who also requested help for themselves and was likely near this person at the time the request was made. Contact info for ' + firstPersonName + ': ' + firstPersonEmail + ' (email), ' + firstPersonPhone + ' (phone). Additional information submitted along ' + firstPersonPhone + '\'s own help request: [' + firstPersonDescription + '].';
+    var firstPersonName = $('#name').val();
+    var firstPersonDescription = $('#description').val();
+    var firstPersonPhone = $('#phone').val();
+    var firstPersonEmail = $('#email').val();
+    additionalPeopleSecondDescription = 'Person entered into the data base by ' + firstPersonName + ', who also requested help for themselves and was likely near this person at the time the request was made. Contact info for ' + firstPersonName + ': [email: ' + firstPersonEmail + ' | phone: ' + firstPersonPhone + ']. Additional information submitted along ' + firstPersonPhone + '\'s own help request: [' + firstPersonDescription + '].';
       console.log(additionalPeopleSecondDescription);
   })
 
