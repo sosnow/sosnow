@@ -25,7 +25,7 @@ $(document).ready(function() {
   });
 
   $('#first-request-help-button').on('click', function() {
-    $('#help-form').empty();
+    $('#help-form').hide();
     $('#help-form-submitted-message').show();
     $('#additional-people-question').show();
     $('#help-form-additional-people').show();

@@ -13,6 +13,7 @@ App.Views.Forms = Backbone.View.extend({
         this.$el.html(this.template);
     },
     addVictim: function() {
+        console.log('clicked');
         var data = {
             name: $('[name=name]').val(),
             age: $('[name=age]:checked').val(),
