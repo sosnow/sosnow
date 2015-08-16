@@ -43,7 +43,7 @@ App.Views.Modal = Backbone.View.extend({
 		'click .submit-comment': 'showComments',
 		'click .add': 'addVictims',
 		'click .mark-safe': 'markSafe'
-	}
+	},
 	returnToSearch: function() {
 		this.$el.empty();
 		this.$el.fadeOut(100);
