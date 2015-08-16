@@ -13,7 +13,7 @@ Victim.create({
   description: FFaker::Lorem.sentence,
   location: FFaker::Address.city,
   geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
-  convCreatedDate: 8/15/2015   
+  convcreateddate: "8/15/2015"   
 
   })
 
@@ -25,7 +25,7 @@ Victim.create({
   description: FFaker::Lorem.sentence,
   location: FFaker::Address.city,
   geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
-  convCreatedDate: 8/14/2015   
+  convcreateddate: "8/14/2015"  
 
   })
 end
@@ -36,7 +36,7 @@ Victim.create({
   description: FFaker::Lorem.sentence,
   location: FFaker::Address.city,
   geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
-  convCreatedDate: 8/13/2015   
+  convcreateddate: "8/13/2015"   
 
   })
 end
@@ -47,7 +47,7 @@ Victim.create({
   description: FFaker::Lorem.sentence,
   location: FFaker::Address.city,
   geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
-  convCreatedDate: 8/12/2015   
+  convcreateddate: "8/12/2015"   
 
   })
 end

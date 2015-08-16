@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.text     "description"
     t.integer  "seeker_id"
     t.integer  "victim_id"
-    t.string   "convCreatedDate"
+    t.string   "convcreateddate"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.string   "location"
     t.string   "phone"
     t.inet     "ip"
-    t.string   "convCreatedDate"
+    t.string   "convcreateddate"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.boolean  "need_rescue",        default: true
     t.boolean  "injured",            default: false
     t.inet     "ip"
-    t.string   "convCreatedDate"
+    t.string   "convcreateddate"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
