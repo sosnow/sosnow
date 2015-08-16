@@ -1,351 +1,224 @@
-<div id="help-form">
-
-  <form>
+<div id="help-form" class="help-forms">
 
   <div id="name-input-div" class="input-div">  
     <div class="form-section-label"><label for="name">Name:</label></div>
     <input type="text" class="input-text" id="name" name="name">
   </div>
 
-  <div id="age-input-div" class="input-div">  
-    <ul class="radio-button-ul">
-      <li>
-        <center>
-        <input type="radio" id="infant" name="age" value="infant">
-        <label for="infant">Infant</label>
-        </center>
-      </li>
-      <li>
-        <center>
-        <input type="radio" id="child" name="age" value="child">
-        <label for="child">Child</label>
-        </center>
-      </li>
-      <li>
-        <center>
-        <input type="radio" id="adult" name="age" value="adult">
-        <label for="adult">Adult</label>
-        </center>
-      </li>
-      <li>
-        <center>
-        <input type="radio" id="senior" name="age" value="senior">
-        <label for="senior">Senior</label>
-        <center>
-      </li>
-    </ul>
-  </div>
-
-  <br>
-  <br>
+  <div style="line-height: 80%">&nbsp;</div>
 
   <div id="gender-input-div" class="input-div">  
     <ul class="radio-button-ul">
       <li>
         <center>
-        <input type="radio" id="male" name="gender" value="male">
+        <input type="radio" id="male" class="gender" name="gender" value="male">
         <label for="male">Male</label>
         </center>
       </li>
       <li>
         <center>
-        <input type="radio" id="female" name="gender" value="female">
+        <input type="radio" id="female" class="gender" name="gender" value="female">
         <label for="female">Female</label>
         </center>
       </li>
     </ul>
   </div>
 
-  <br>
-  <br>
-
+  <div style="clear: both; line-height: 5%">&nbsp;</div>
+  
+  <div id="age-input-div" class="input-div">
+    <ul class="radio-button-ul">
+      <li>
+        <center>
+        <input type="radio" id="child" name="age" class="age" value="child">
+        <label for="child">Child</label>
+        </center>
+      </li>
+      <li>
+        <center>
+        <input type="radio" id="adult" name="age" class="age" value="adult">
+        <label for="adult">Adult</label>
+        </center>
+      </li>
+    </ul>
+  </div>
+  
   <div id="location-input-div" class="input-div">
     <div id="location-label" class="form-section-label">Location:</div>
     <div id="location-from-ip-div" style="display: none;">
       <input type="text" id="location-from-ip-display-box" class="input-text" readonly>
       <div id="location-from-ip-confirmation" class="line-message-div">
-        <div class="line-message">Is this accurate?</div>
-        <a href="#" id="correct-location-button" class='form-button'><center>Yes</center></a>
-        <a href="#" id="incorrect-location-button" class='form-button'><center>No</center></a>
+        <div class="line-message">Accurate location?</div>
+        <a id="correct-location-button" class='form-button form-button-a-tag'><center>Yes</center></a>
+        <a id="incorrect-location-button" class='form-button form-button-a-tag'><center>No</center></a>
+        <br>
       </div>
     </div>
     <div id="locationField">
       <input id="autocomplete" class="input-text" onFocus="geolocate()" type="text" placeholder=""></input>
       <div id="location-from-autocomplete-confirmation" style='display: none;' class="line-message-div">
-        <a href="#" id="ok-location-button" class='form-button'><center>OK</center></a>
-        <a href="#" id="change-location-button" class='form-button'><center>Change</center></a>
+        <a id="ok-location-button" class='form-button form-button-a-tag'><center>OK</center></a>
+        <a id="change-location-button" class='form-button form-button-a-tag'><center>Change</center></a>
+        <br>
       </div>
     </div>
   </div>
 
-  <br>
-
-  <div id="location-more-info-input-div" style="display: none;" class="input-div">
-    <div class="form-section-label"><label for="location-more-info">Additional info:</label></div>
-    <textarea id="location-more-info" class="input-textarea" rows="3" name="description" form="help-needed" placeholder="street address, floor, emergency situation, etc."></textarea>
+  <div id="description-input-div" class="input-div">
+    <div class="form-section-label"><label for="description">Other information:</label></div>
+    <textarea id="description" class="input-textarea" rows="4" name="description" form="help-needed" placeholder="emergency situation, street adress, floor, suite, etc."></textarea>
   </div>
 
-  <div id="phone-input-div" class="input-div">
-    <div class="form-section-label"><label for"phone">Phone:</label></div>
-    <input id="phone" type="text" name="phone" class="input-text">
+  <div id="injured-input-div" class="input-div" style="margin: 18px 0 65px;">
+    <span style="float: left;  margin: -5px 5px 0 0; display:">Injured?</span>
+    <ul class="radio-button-ul">
+      <li style="height: 20px; width: 54px;">
+        <center>
+        <input type="radio" id="injured-yes" name="injured" value="true">
+        <label for="injured-yes" style="padding: 2px 0 20px;">Yes</label>
+        </center>
+      </li>
+      <li style="height: 20px; width: 54px;">
+        <center>
+        <input type="radio" id="injured-no" name="injured" value="false">
+        <label for="injured-no" style="padding: 2px 0 20px;">No</label>
+        </center>
+      </li>
   </div>
+
 
   <div id="email-input-div" class="input-div">
     <div class="form-section-label"><label for="email">Email:</label></div>
-    <input id="email" type="text" name="email" class="input-text">
+    <input id="email" type="email" name="email" class="input-text">
   </div>
 
+  <div id="phone-input-div" class="input-div">
+    <div class="form-section-label"><label for="phone">Phone:</label></div>
+    <input id="phone" type="tel" name="phone" class="input-text">
+  </div>
+  
+  <input type="hidden" id="geolocation" name="geolocation">
+
   <br>
-
-  <input type="hidden" id="geopoint" name="geopoint">
-
-  </form>
-
-  <button>Request Help</button>
-
+  <center>
+    <button id="first-request-help-button" class="request-help-button">Request Help</button>
+  </center>
 </div>
 
-<script type="text/javascript">
+<div id="help-form-additional-people" class="help-forms" style="display: none;">
 
-$(document).ready(function() {
+  <div id="help-form-submitted-message" style="display: none;">
+    <b>Your request for help has been submitted. Stay calm.</b>
+    <br>
+  </div>
 
-  $('form').each(function() { this.reset() });
+  <center>
+    <div id="additional-people-question" class="form-paragraph" style="display: none;">
+      <br>
+      Add other people around you?
+      <br>
+      <br>
+    </div>
+  </center>
+  
+  <div id="additional-people-invisible" style="display: none;">
+    <div class="help-forms additional-person-form">
 
-  // Getting Geolocation from IP address:
+      <input type="hidden" id="location_person_" name="location">
+      <input type="hidden" id="geolocation_person_" name="geolocation">
+      <input type="hidden" id="second_description_person_" name="second_description">
 
-  var latitudeFromIp = undefined;
-  var longitudeFromIp = undefined;
-  var cityFromIp = undefined;
-  var regionFromIp = undefined;
-  var countryFromIp = undefined;
-  var successGettingLocationFromIp = false;
+      <div id="name-input-div_person_" class="input-div">  
+        <div class="form-section-label"><label id="label_person_" for="name_person_">Name of person #num:</label></div>
+        <input type="text" class="input-text" id="name_person_" name="name_person_" placeholder="Enter if known">
+      </div>
 
-  var getLocationFromIp = function() {
-    $.ajax({
-      cache: false,
-      type: 'GET',
-      datatype: 'json',
-      url: 'https://freegeoip.net/json/',
-      success: function(data) {
-        $('#location-label').html('Trying to get location...');
+      <div style="line-height: 80%">&nbsp;</div>
+      
+      <div id="gender-input-div" class="input-div">
+        <ul class="radio-button-ul">
+          <li>
+            <center>
+            <input type="radio" id="male_person_" class="gender" name="gender_person_" value="male">
+            <label for="male_person_">Male</label>
+            </center>
+          </li>
+          <li>
+            <center>
+            <input type="radio" id="female_person_" class="gender" name="gender_person_" value="female">
+            <label for="female_person_">Female</label>
+            </center>
+          </li>
+          <li>
+            <center>
+            <input type="radio" id="unknown_person_" class="gender" name="gender_person_" value="unknown">
+            <label for="unknown_person_">Unknown</label>
+            </center>
+          </li>
+        </ul>
+      </div>
 
-        latitudeFromIp = data.latitude;
-        longitudeFromIp = data.longitude;
-        cityFromIp = data.city;
-        regionFromIp = data.region_code;
-        countryFromIp = data.country_name;
-        successGettingLocationFromIp = true;
+      <div style="clear: left; line-height: 5%">&nbsp;</div>
+      
+      <div id="age-input-div" class="input-div">
+        <ul class="radio-button-ul">
+          <li>
+            <center>
+            <input type="radio" id="baby_person_" name="age_person_" value="baby">
+            <label for="baby_person_">Baby</label>
+            </center>
+          </li>
+          <li>
+            <center>
+            <input type="radio" id="child_person_" name="age_person_" value="child">
+            <label for="child_person_">Child</label>
+            </center>
+          </li>
+          <li>
+            <center>
+            <input type="radio" id="adult_person_" name="age_person_" value="adult">
+            <label for="adult_person_">Adult</label>
+            </center>
+          </li>
+          <li>
+            <center>
+            <input type="radio" id="elder_person_" name="age_person_" value="elder">
+            <label for="elder_person_">Elder</label>
+            <center>
+          </li>
+        </ul>
+      </div>
 
-        $('#geopoint').val('[' + latitudeFromIp + ',' + longitudeFromIp + ']');
-        $('#location-from-ip-display-box').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
-        $('#location-label').html('Location:');
-        $('#locationField').hide();
-        $('#location-from-ip-div').show();
+      <div style="clear: left"></div>
 
-        console.log('getLocationFromIp AJAX request: success');
-        console.log('geopoint from IP: [' + latitudeFromIp + ',' + longitudeFromIp + ']');
-        console.log('#geopoint value updated via IP to: ' + $('#geopoint').val() ); 
-        console.log('location found via IP: ' + $('#location-from-ip-display-box').val() ); 
-      },
-      error: function() {
-        console.log('getLocationFromIp AJAX request: error');
-        $('#location-label').html('Location:');
-        $('#location-from-ip-div').hide();
-        $('#locationField').show();
-      },
-      timeout: 5000,
-      complete: function(jqXHR, textStatus) { 
-        if (textStatus == "timeout") {
-          console.log('getLocationFromIp AJAX request: timeout');
-        }
-      }
-    });
-  };
-  getLocationFromIp();
+      <div id="injured-input-div" class="input-div">
+        <span style="float: left;  margin: -5px 5px 0 0; display:">Injured?</span>
+        <ul class="radio-button-ul">
+      <li style="height: 20px; width: 54px;">
+        <center>
+        <input type="radio" id="injured-yes_person_" name="injured_person_" value="true">
+        <label for="injured-yes_person_" style="padding: 2px 0 20px;">Yes</label>
+        </center>
+      </li>
+      <li style="height: 20px; width: 54px;">
+        <center>
+        <input type="radio" id="injured-no_person_" name="injured_person_" value="false">
+        <label for="injured-no_person_" style="padding: 2px 0 20px;">No</label>
+        </center>
+      </li>
+  </div>
+    </div>
+    <br>
+  </div>
 
+  <div id="additional-people">
+  </div>
 
-  // Getting Geolocation from HTML5:
-
-  var latitudeFromHtml5 = undefined;
-  var longitudeFromHtml5 = undefined;
-
-  var showPosition = function(position) {
-    $('#location-label').html('Getting location...');
-    latitudeFromHtml5 = position.coords.latitude;
-    longitudeFromHtml5 = position.coords.longitude;
-    $.ajax({
-      cache: false,
-      type: 'GET',
-      dataType: 'json',
-      url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitudeFromHtml5 + ',' + longitudeFromHtml5 + '&sensor=true',
-      success: function(data) {
-        $('#geopoint').val('['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
-
-        var locality = undefined;
-        var administrativeAreaLevel1 = undefined;
-        var administrativeAreaLevel2 = undefined;
-        var country = undefined;
-
-        for (var i = 0; i < (data.results).length; i++) {
-          for (var j = 0; j < (data.results[i].address_components).length; j++) {
-            var localityString = 'locality'
-            if ((data.results[i].address_components[j].types).indexOf('locality') !== -1) {
-              locality = data.results[i].address_components[j].long_name
-            }
-            break;
-          }
-          for (var j = 0; j < (data.results[i].address_components).length; j++) {
-            if ((data.results[i].address_components[j].types).indexOf('administrative_area_level_1') !== -1) {
-              administrativeAreaLevel1 = data.results[i].address_components[j].short_name
-            }
-            break;
-          }
-          for (var j = 0; j < (data.results[i].address_components).length; j++) {
-            if ((data.results[i].address_components[j].types).indexOf('administrative_area_level_2') !== -1) {
-              administrativeAreaLevel2 = data.results[i].address_components[j].long_name
-            }
-            break;
-          }
-          for (var j = 0; j < (data.results[i].address_components).length; j++) {
-            if ((data.results[i].address_components[j].types).indexOf('country') !== -1) {
-              country = data.results[i].address_components[j].long_name
-            }
-            break;
-          }
-        }
-
-        var locationComponentsArray = [];
-        var locationComponentsString = '';
-
-        if (locality) {
-          locationComponentsArray.push(locality);
-        } else if (administrativeAreaLevel2) {
-          locationComponentsArray.push(administrativeAreaLevel2);
-        }
-        if (administrativeAreaLevel1) {
-          locationComponentsArray.push(administrativeAreaLevel1);
-        }
-        if (country) {
-          locationComponentsArray.push(country);
-        }
-        locationComponentsString = locationComponentsArray.join(', ');
-
-        $('#geopoint').val('['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
-        $('#location-from-ip-display-box').val(locationComponentsString);
-        $('#location-label').html('Location:');
-        $('#locationField').hide();
-        $('#location-from-ip-div').show();
-
-        console.log('showPosition AJAX request: success');
-        console.log('geopoint from HTML5: ['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
-        console.log('#geopoint value updated via HTML5 to: ' + $('#geopoint').val() );
-        console.log('location found via HTML5: ' + $('#location-from-ip-display-box').val() ); 
-
-      },
-      error: function() {
-        console.log('showPosition AJAX request: error');
-        $('#location-label').html('Location:');
-        if (successGettingLocationFromIp === false) {
-          $('#location-from-ip-div').hide();
-          $('#locationField').show();
-        }
-      },
-      timeout: 8000,
-      complete: function(jqXHR, textStatus) { 
-        if (textStatus == "timeout") {
-          console.log('showPosition AJAX request: timeout');
-        }
-      }
-    });
-  }
-
-  var showError = function() {
-    console.log('showError');
-    $('#location-label').html('Location:');
-    $('#location-from-ip-div').hide();
-    $('#locationField').show();
-  }
-
-  var getLocationFromHtml5 = function() {
-    $('#location-label').html('Trying to get location...');
-    if (navigator.geolocation) {
-      console.log('getLocationFromHtml5 if is true')
-      navigator.geolocation.getCurrentPosition(showPosition, showError);
-    }
-  }
-  getLocationFromHtml5();
-
-
-  // Event listeners:
-
-  $('#correct-location-button').on('click', function() {
-    $('#location-from-ip-div').show();
-  });
-
-  $('#incorrect-location-button').on('click', function() {
-    $('#location-from-ip-div').hide();
-    $('#location-more-info-input-div').hide();
-    $('#autocomplete').attr('placeholder', 'Enter location');
-    $('#locationField').show();
-  });
-
-  $('#autocomplete').on('keyup', function() {
-    if (( $('#autocomplete').val() ).length > 0) {
-      $('#location-from-autocomplete-confirmation').show(); 
-      $('#ok-location-button').css('background', '');
-    }
-  });
-
-  $('#correct-location-button').on('click', function() {
-    $('#location-more-info-input-div').show();
-  });
-
-  $('#ok-location-button').on('click', function() {
-    $('#location-more-info-input-div').show();
-    var confirmedPlace = autocomplete.getPlace();
-    var confirmedPlaceLatitude = confirmedPlace.geometry.location.G;
-    var confirmedPlaceLongitude = confirmedPlace.geometry.location.K;
-    $('#geopoint').val('['+ confirmedPlaceLatitude + ',' + confirmedPlaceLongitude + ']');
-    console.log('#geopoint value updated via OK button to: ' + $('#geopoint').val());
-  });
-
-  $('#correct-location-button').on('click', function() {
-    $(this).css('background', 'yellow');
-  });
-
-  $('#ok-location-button').on('click', function() {
-    $('#change-location-button').css('background', '');
-    $(this).css('background', 'yellow');
-  });
-
-  $('#change-location-button').on('click', function() {
-    $('#autocomplete').val('');
-    $('#ok-location-button').css('background', '');
-    $('#location-more-info-input-div').hide();
-  });
-});
-
-// Using the autocomplete feature of the Google Places API
-var autocomplete;
-
-function initAutocomplete() {
-  // Create the autocomplete object, restricting the search to geographical
-  // location types.
-  autocomplete = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete'))
-    // , {types: ['geocode']}
-  );
-
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  autocomplete.addListener('place_changed', function() {
-    var changedPlace = autocomplete.getPlace();
-    var changedPlaceLatitude = changedPlace.geometry.location.G;
-    var changedPlaceLongitude = changedPlace.geometry.location.K;
-    $('#geopoint').val('['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']');
-    $('location-from-autocomplete-confirmation').show();
-    console.log('#geopoint value updated via place_changed to: ' + $('#geopoint').val());
-  });
-}
-
-</script>
+  <center>
+    <button id="first-additional-person-button" class="request-help-button">Yes</button>
+    <button id="no-additional-person-button" class="request-help-button">No</button>
+    <button id="subsequent-additional-person-button" class="request-help-button" style="display: none;">Add person</button>
+    <button id="submit-all-button" class="request-help-button" style="display: none;">Submit all</button>
+    <button id="all-people-submitted-button" style="display: none;"></button>
+  </center>
+</div>

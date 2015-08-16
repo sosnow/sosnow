@@ -9,9 +9,11 @@ class VictimsController < ApplicationController
 		# @seeker = @victim.seekers
 		@comment = @victim.comments
 
+
 		seeker = Seeker.all(:select => '*', :joins => :comment)
 				
 		render json: [@victim, @comment, seeker]
+
 	end
 
 	def create
@@ -28,7 +30,7 @@ class VictimsController < ApplicationController
 	private
 
 	def victim_params
-		params.require(:victim).permit(:name, :age, :gender, :location, :geolocation, :email, :phone, :description, :need_rescue, :ip, :convCreatedDate, :injured)
+		params.require(:victim).permit(:name, :age, :gender, :location, :geolocation, :email, :phone, :description, :second_description, :need_rescue, :ip, :convCreatedDate, :injured)
 	end
 
 end
