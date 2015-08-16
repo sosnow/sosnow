@@ -23,22 +23,19 @@
         countryFromIp = data.country_name;
         successGettingLocationFromIp = true;
 
-        firstPersonGeolocation = '[' + latitudeFromIp + ',' + longitudeFromIp + ']';
-        $('#geolocation').val('[' + latitudeFromIp + ',' + longitudeFromIp + ']');
+        $('#geolocation').val(latitudeFromIp + ',' + longitudeFromIp);
+        firstPersonGeolocation = latitudeFromIp + ',' + longitudeFromIp;
+        $('#location').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
         firstPersonLocation = cityFromIp +', ' + regionFromIp + ', ' + countryFromIp;
         $('#location-from-ip-display-box').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
         $('#location-label').html('Location:');
         $('#locationField').hide();
         $('#location-from-ip-div').show();
 
-        console.log('getLocationFromIp AJAX request: success');
-        console.log('geolocation from IP: [' + latitudeFromIp + ',' + longitudeFromIp + ']');
-        console.log('location found via IP: ' + $('#location-from-ip-display-box').val() );
-        console.log('firstPersonGeolocation: ' + firstPersonGeolocation);
-        console.log('firstPersonLocation: ' + firstPersonLocation);
+        console.log('Location from HTML5: success');
       },
       error: function() {
-        console.log('getLocationFromIp AJAX request: error');
+        console.log('Location from HTML5: error');
         $('#location-label').html('Location:');
         $('#location-from-ip-div').hide();
         $('#locationField').show();
@@ -46,7 +43,7 @@
       timeout: 8000,
       complete: function(jqXHR, textStatus) { 
         if (textStatus == "timeout") {
-          console.log('getLocationFromIp AJAX request: timeout');
+          console.log('Location from HTML5: timeout');
         }
       }
     });
