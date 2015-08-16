@@ -9,6 +9,7 @@ class CreateVictims < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.text :description
+      t.text :second_description
       t.boolean :need_rescue, :default => true
       t.boolean :injured, :default => false
       t.inet :ip
