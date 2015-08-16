@@ -14,8 +14,6 @@
       datatype: 'json',
       url: 'https://freegeoip.net/json/',
       success: function(data) {
-        $('#location-label').html('Trying to get location...');
-
         latitudeFromIp = data.latitude;
         longitudeFromIp = data.longitude;
         cityFromIp = data.city;
@@ -23,28 +21,54 @@
         countryFromIp = data.country_name;
         successGettingLocationFromIp = true;
 
-        $('#geolocation').val(latitudeFromIp + ',' + longitudeFromIp);
-        firstPersonGeolocation = latitudeFromIp + ',' + longitudeFromIp;
-        $('#location').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
-        firstPersonLocation = cityFromIp +', ' + regionFromIp + ', ' + countryFromIp;
-        $('#location-from-ip-display-box').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
-        $('#location-label').html('Location:');
-        $('#locationField').hide();
-        $('#location-from-ip-div').show();
+        firstPersonGeolocationFromIp = latitudeFromIp + ',' + longitudeFromIp;
+        firstPersonLocationFromIp = cityFromIp +', ' + regionFromIp + ', ' + countryFromIp;
 
-        console.log('Location from HTML5: success');
+        console.log('Location from IP: success');
       },
       error: function() {
-        console.log('Location from HTML5: error');
-        $('#location-label').html('Location:');
+        console.log('Location from IP: error');
         $('#location-from-ip-div').hide();
         $('#locationField').show();
       },
       timeout: 8000,
       complete: function(jqXHR, textStatus) { 
         if (textStatus == "timeout") {
-          console.log('Location from HTML5: timeout');
+          console.log('Location from IP: timeout');
         }
+      }
+    }).done(function() {
+      console.log('Location from IP: done');
+      if (firstPersonLocationFromHtml5 && firstPersonGeolocationFromHtml5) {
+        $('#location').val(firstPersonLocationFromHtml5);
+        firstPersonLocation = firstPersonLocationFromHtml5
+        $('#geolocation').val(firstPersonGeolocationFromHtml5);
+        firstPersonGeolocation = firstPersonGeolocationFromHtml5;
+
+        $('#location-from-ip-display-box').val(firstPersonLocation);
+        $('#locationField').hide();
+        $('#location-from-ip-div').show();
+      } else {
+        $('#geolocation').val(firstPersonGeolocationFromIp);
+        firstPersonLocation = firstPersonLocationFromIp;
+        $('#location').val(firstPersonLocationFromIp);
+        firstPersonGeolocation = firstPersonGeolocationFromIp;
+
+        $('#location-from-ip-display-box').val(firstPersonLocationFromIp);
+        $('#locationField').hide();
+        $('#location-from-ip-div').show();
+      }
+    }).fail(function() {
+      console.log('Location from IP: fail');
+      if (firstPersonLocationFromHtml5 && firstPersonGeolocationFromHtml5) {
+        $('#location').val(firstPersonLocationFromHtml5);
+        firstPersonLocation = firstPersonLocationFromHtml5
+        $('#geolocation').val(firstPersonGeolocationFromHtml5);
+        firstPersonGeolocation = firstPersonGeolocationFromHtml5;
+
+        $('#location-from-ip-display-box').val(firstPersonLocation);
+        $('#locationField').hide();
+        $('#location-from-ip-div').show();
       }
     });
   };
