@@ -23,7 +23,9 @@
 //= require_tree ./backbone/collections
 //= require_tree ./backbone/views
 //= require_tree ./templates
+//= require_tree ./app_scripts
 //= require_tree .
+//= require_tree ./document_ready
 
 
 
