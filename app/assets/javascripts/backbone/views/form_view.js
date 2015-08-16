@@ -2,7 +2,7 @@ App.Views.Forms = Backbone.View.extend({
     el: '#page',
     events: {
         'click #first-request-help-button': 'addVictim',
-        'click #submit-all-button': 'addVictim'
+        'click #all-people-submitted-button': 'addAdditionalVictims'
     },
     initialize: function() {
         console.log('Form View Loaded');
@@ -15,34 +15,30 @@ App.Views.Forms = Backbone.View.extend({
     addVictim: function() {
         var data = {
             name: $('[name=name]').val(),
-            age: $('[name=age]').val(),
-            gender: $('[name=gender]').val(),
+            age: $('[name=age]:checked').val(),
+            gender: $('[name=gender]:checked').val(),
             location: $('[name=location]').val(),
             geolocation: $('[name=geolocation').val(),
             description: $('[name=description]').val(),
+            injured: $('[name=injured]').val(),
             email: $('[name=email]').val(),
             phone: $('[name=phone]').val()
         };
-        var templateTwo = HandlebarsTemplates['help_form_submitted'];
         this.collection.create(data);
-        this.$el.empty();
-        this.$el.html(templateTwo);
-        this.childElement();
     },
-    childElement: function() {
-        $("#help-form-after-submission").html(this.template);
-        // var data = {
-        //     name: $('[name=name]').val(),
-        //     age: $('[name=age]').val(),
-        //     gender: $('[name=gender]').val(),
-        //     location: $('[name=location]').val(),
-        //     description: $('[name=description]').val(),
-        //     email: $('[name=email]').val(),
-        //     phone: $('[name=phone]').val()
-        // };
-        // for (var key in data) {
-        //     key.empty();
-        // }
+    addAdditionalVictims: function() {
+        var additionalPeopleCount = additionalPeople.length;
+        for (i = 0; i < additionalPeopleCount; i++) {
+            var data = {
+                name: additionalPeople[i].name,
+                gender: additionalPeople[i].gender,
+                age: additionalPeople[i].age,
+                injured: additionalPeople[i].injured,
+                location: additionalPeople[i].location,
+                geolocation: additionalPeople[i].geolocation,
+                second_description: additionalPeople[i].second_description,
+            };
+            this.collection.create(data);
+        }
     }
-
 });
