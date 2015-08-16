@@ -2,7 +2,7 @@ App.Views.Forms = Backbone.View.extend({
     el: '#page',
     events: {
         'click #first-request-help-button': 'addVictim',
-        'click #submit-all-button': 'addVictim'
+        'click #all-people-submitted-button': 'addAdditional'
     },
     initialize: function() {
         console.log('Form View Loaded');
@@ -25,10 +25,30 @@ App.Views.Forms = Backbone.View.extend({
         };
         var templateTwo = HandlebarsTemplates['help_form_submitted'];
         this.collection.create(data);
-        this.$el.empty();
-        this.$el.html(templateTwo);
-        this.childElement();
+        // this.$el.empty();
+        // this.$el.html(templateTwo);
+        // this.childElement();
     },
+    addVictim: function() {
+        for(var i=0; i<ARRAYNAME.LENGTH; i++){       
+        var data = {
+            name: $('[name=name]').val(),
+            age: $('[name=age]').val(),
+            gender: $('[name=gender]').val(),
+            location: $('[name=location]').val(),
+            geolocation: $('[name=geolocation').val(),
+            description: $('[name=description]').val(),
+            email: $('[name=email]').val(),
+            phone: $('[name=phone]').val()
+        };
+        this.collection.create(data[i]);
+        // this.$el.empty();
+        // this.$el.html(templateTwo);
+        // this.childElement();
+        }
+        var templateTwo = HandlebarsTemplates['help_form_submitted'];
+    },
+
     childElement: function() {
         $("#help-form-after-submission").html(this.template);
         // var data = {
