@@ -49,6 +49,8 @@ App.Views.Signlog = Backbone.View.extend({
         url: '/sessions/new',
         type: 'GET',
         success: function(data) {
+
+
             if (data){
               $.ajax({
               type: 'GET',

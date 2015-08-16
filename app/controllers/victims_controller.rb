@@ -9,6 +9,7 @@ class VictimsController < ApplicationController
 		
 		@comment = @victim.comments
 		@seeker = @victim.seekers
+		# @seeker = Seeker.joins(:comment).where(comments: { seeker_id: id})
 
 
 		# seeker = Seeker.all(:select => '*', :joins => :comment)
