@@ -7,14 +7,49 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-40.times do 
+10.times do 
 Victim.create({
   name: FFaker::Name.name,
   description: FFaker::Lorem.sentence,
   location: FFaker::Address.city,
-  geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng]     
+  geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
+  convCreatedDate: 8/15/2015   
+
   })
 
+end
+
+10.times do
+Victim.create({
+  name: FFaker::Name.name,
+  description: FFaker::Lorem.sentence,
+  location: FFaker::Address.city,
+  geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
+  convCreatedDate: 8/14/2015   
+
+  })
+end
+
+10.times do
+Victim.create({
+  name: FFaker::Name.name,
+  description: FFaker::Lorem.sentence,
+  location: FFaker::Address.city,
+  geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
+  convCreatedDate: 8/13/2015   
+
+  })
+end
+
+10.times do
+Victim.create({
+  name: FFaker::Name.name,
+  description: FFaker::Lorem.sentence,
+  location: FFaker::Address.city,
+  geolocation: [FFaker::Geolocation.lat,FFaker::Geolocation.lng],
+  convCreatedDate: 8/12/2015   
+
+  })
 end
 
 5.times do 

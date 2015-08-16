@@ -15,7 +15,6 @@ class CreateVictims < ActiveRecord::Migration
       t.inet :ip
       t.string "convCreatedDate"
 
-
       t.timestamps null: false
     end
   end

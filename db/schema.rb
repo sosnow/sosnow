@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.string   "seeker_name"
     t.integer  "seeker_id"
     t.integer  "victim_id"
-    t.string "convCreatedDate"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "convCreatedDate"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "seekers", force: :cascade do |t|
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.string   "location"
     t.string   "phone"
     t.inet     "ip"
-    t.string "convCreatedDate"
+    t.string   "convCreatedDate"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -54,13 +54,14 @@ ActiveRecord::Schema.define(version: 20150811194342) do
     t.point    "geolocation"
     t.string   "email"
     t.string   "phone"
-    t.string "convCreatedDate"
     t.text     "description"
-    t.boolean  "need_rescue", default: true
-    t.boolean "injured", default: false
+    t.text     "second_description"
+    t.boolean  "need_rescue",        default: true
+    t.boolean  "injured",            default: false
     t.inet     "ip"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "convCreatedDate"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end
