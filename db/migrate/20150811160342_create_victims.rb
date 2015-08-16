@@ -13,7 +13,7 @@ class CreateVictims < ActiveRecord::Migration
       t.boolean :need_rescue, :default => true
       t.boolean :injured, :default => false
       t.inet :ip
-      t.string "convCreatedDate"
+      t.string "convcreateddate"
 
       t.timestamps null: false
     end

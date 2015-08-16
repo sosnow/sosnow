@@ -7,8 +7,7 @@ class CreateSeekers < ActiveRecord::Migration
       t.string :location
       t.string :phone
       t.inet :ip
-      t.string "convCreatedDate"
-
+      t.string "convcreateddate"
       t.timestamps null: false
     end
   end
