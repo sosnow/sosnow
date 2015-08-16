@@ -3,7 +3,6 @@ $(document).ready(function() {
 // Event listeners:
 
   additionalPersonXForm = $('#additional-people-invisible').html();
-  additionalPerson1Form = $('#additional-people-invisible').html();
 
   $('#autocomplete').on('keyup', function(e) {
     if (( $('#autocomplete').val() ).length > 0) {
