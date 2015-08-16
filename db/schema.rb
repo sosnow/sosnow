@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150811194342) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "description"
+    t.string   "seeker_name"
     t.integer  "seeker_id"
     t.integer  "victim_id"
     t.string   "convCreatedDate"

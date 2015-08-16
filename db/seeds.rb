@@ -102,6 +102,7 @@ Comment.create({
 
 Comment.create({
   description: FFaker::Lorem.sentence,
+  seeker_name: 'ruby',
   victim_id: 39,  
   seeker_id: 6  
   })
