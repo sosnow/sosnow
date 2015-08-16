@@ -25,9 +25,13 @@
 
 <div id='comment-list'>
 {{#each this.[1]}}
+
+<div class='comment-seeker-name'><p>{{this.[2].name}}</p></div>
+
 	<div class='comment-box'><p>{{description}}</p></div>
 {{/each}}
 </div>
 
 
 <p><button class='close'>close</button></p>
+
