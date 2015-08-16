@@ -23,8 +23,10 @@ App.Views.Forms = Backbone.View.extend({
             description: $('[name=description]').val(),
             injured: $('[name=injured]').val(),
             email: $('[name=email]').val(),
-            phone: $('[name=phone]').val()
+            phone: $('[name=phone]').val(),
+            convCreatedDate: this.dateConversion()
         };
+        console.log(data);
         this.collection.create(data);
     },
     addAdditionalVictims: function() {
@@ -41,5 +43,18 @@ App.Views.Forms = Backbone.View.extend({
             };
             this.collection.create(data);
         }
-    }
+    },
+    dateConversion: function(){
+        //Adds date in Western Format
+        var currentDate = new Date();
+        var mmMonth = function (m){
+            if (m.getMonth()<9){
+                var incrementer = m.getMonth() + 1;
+                return "0" + incrementer;
+            }
+            else
+                return m.getMonth() + 1;
+        };
+        return mmMonth(currentDate) + '/' + currentDate.getDate() + '/' + currentDate.getFullYear();
+    },
 });
