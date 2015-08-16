@@ -4,11 +4,12 @@
     width: 100%;
     background: rgba(0,0,0,.9);
     color: lightgrey;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     padding-top: 5%;
     text-align: center;
     overflow: scroll;
-    height: 100%;
+    height: 90%;
     z-index: 201;
+    margin-bottom: 10%;
 
 }
