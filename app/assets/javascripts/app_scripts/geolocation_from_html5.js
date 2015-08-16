@@ -4,7 +4,6 @@
   var longitudeFromHtml5 = undefined;
 
   var showPosition = function(position) {
-    $('#location-label').html('Getting location...');
     latitudeFromHtml5 = position.coords.latitude;
     longitudeFromHtml5 = position.coords.longitude;
     $.ajax({
@@ -64,43 +63,46 @@
         }
         locationComponentsString = locationComponentsArray.join(', ');
 
-        $('#geolocation').val(latitudeFromHtml5 + ',' + longitudeFromHtml5);
-        firstPersonGeolocation = latitudeFromHtml5 + ',' + longitudeFromHtml5;
-        $('#location').val(cityFromIp +', ' + regionFromIp + ', ' + countryFromIp);
-        firstPersonLocation = locationComponentsString;
-        $('#location-from-ip-display-box').val(locationComponentsString);
-        $('#location-label').html('Location:');
-        $('#locationField').hide();
-        $('#location-from-ip-div').show();
+        firstPersonGeolocationFromHtml5 = latitudeFromHtml5 + ',' + longitudeFromHtml5;
+        firstPersonLocationFromHtml5 = locationComponentsString;
 
-        console.log('Location from IP request: success');
+        console.log('Location from HTML5: success');
       },
       error: function() {
-        console.log('Location from IP request: error');
-        $('#location-label').html('Location:');
+        console.log('Location from HTML5: error');
         if (successGettingLocationFromIp === false) {
           $('#location-from-ip-div').hide();
           $('#locationField').show();
         }
       },
-      timeout: 10000,
+      timeout: 6000,
       complete: function(jqXHR, textStatus) { 
         if (textStatus == "timeout") {
-          console.log('Location from IP request: timeout');
+          console.log('Location from HTML5: timeout');
         }
       }
-    });
+    }).done(function() {
+      console.log('Location from HTML5: done');
+      $('#location').val(firstPersonLocationFromHtml5);
+      firstPersonLocation = firstPersonLocationFromHtml5
+      $('#geolocation').val(firstPersonGeolocationFromHtml5);
+      firstPersonGeolocation = firstPersonGeolocationFromHtml5;
+
+      $('#location-from-ip-display-box').val(firstPersonLocation);
+      $('#locationField').hide();
+      $('#location-from-ip-div').show();
+    }).fail(function() {
+      console.log('Location from HTML5: fail');
+    });;
   }
 
   var showError = function() {
     console.log('showError');
-    $('#location-label').html('Location:');
     $('#location-from-ip-div').hide();
     $('#locationField').show();
   }
 
   var getLocationFromHtml5 = function() {
-    $('#location-label').html('Trying to get location...');
     if (navigator.geolocation) {
       console.log('getLocationFromHtml5 if is true')
       navigator.geolocation.getCurrentPosition(showPosition, showError);
