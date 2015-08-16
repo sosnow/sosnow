@@ -24,7 +24,7 @@ App.Views.Forms = Backbone.View.extend({
             injured: $('[name=injured]').val(),
             email: $('[name=email]').val(),
             phone: $('[name=phone]').val(),
-            convCreatedDate: this.dateConversion()
+            convcreateddate: this.dateConversion()
         };
         console.log(data);
         this.collection.create(data);
