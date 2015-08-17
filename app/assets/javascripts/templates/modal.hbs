@@ -12,16 +12,26 @@
 
 <div id='add-button'>
 {{#if this.data}}
+    <div id ='help-victim'>
     {{#if this.seekerObj}}
-    <p><button class='no-add' data-value={{this.modelData.[0].id}}>Has Been Added To Help List</button></p>
-    {{else}}
-    <p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
+   
+        <p><button class='no-add' data-value={{this.modelData.[0].id}}>Has Been Added To Help List</button></p>
+
+        
+        {{else}}
+        <p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
+    
     {{/if}}
+    </div>
+    <div id ='safe'>
     {{#if this.modelData.[0].need_rescue}}
-    <p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
-    {{else}}
-    <p><button class='mark-unsafe' data-value={{this.modelData.[0].id}}>Mark Unsafe</button></p>
+    
+        <p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
+        {{else}}
+        <p><button class='mark-unsafe' data-value={{this.modelData.[0].id}}>Mark Unsafe</button></p>
+    
     {{/if}}
+    </div>
 {{/if}}
 </div>
 
