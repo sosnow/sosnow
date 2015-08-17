@@ -1,5 +1,3 @@
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
-
 <div id="help-form" class="help-forms">
 
   <div id="name-input-div" class="input-div">  
@@ -225,3 +223,93 @@
     <button id="all-people-submitted-button" style="display: none;"></button>
   </center>
 </div>
+
+<script>
+
+$(document).ready(function() {
+
+  var loadMapApi = function() {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete";
+    script.id = 'google-places-autocomplete-api'
+    document.getElementById('page').appendChild(script);
+    console.log('Google maps API script appended.')
+  };
+
+  var removeElementsFromDomArray = function(domArray) {
+    for (i = 0; i < domArray.length; i++) {
+      domArray[i].parentNode.removeChild(domArray[i]);
+      console.log(domArray[i] + ' removed.')
+    }
+  }
+
+  var bodyScriptTagsOnDocumentLoad = document.querySelectorAll('body > script');
+  var removebodyScriptTagsOnDocumentLoad = function() {
+    if (bodyScriptTagsOnDocumentLoad) {
+      removeElementsFromDomArray(bodyScriptTagsOnDocumentLoad);
+    }
+  }
+
+  var divsOfClassPacContainerOnDocumentLoad = document.querySelectorAll('.pac-container');
+  var removeDivsOfClassPacContainerOnDocumentLoad = function() {
+    if (divsOfClassPacContainerOnDocumentLoad.length > 1) {
+      removeElementsFromDomArray(divsOfClassPacContainerOnDocumentLoad);
+    }
+  }
+
+  var actionAfterRemovingElementsFromDom = $.Deferred();
+
+  actionAfterRemovingElementsFromDom.done(removebodyScriptTagsOnDocumentLoad, removeDivsOfClassPacContainerOnDocumentLoad).done(function() {
+    loadMapApi()
+  });
+
+  actionAfterRemovingElementsFromDom.resolve();
+
+});
+
+// Using the autocomplete feature of the Google Places API
+var autocomplete;
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete'))
+    // , {types: ['geocode']}
+  );
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', function() {
+    var changedPlace = autocomplete.getPlace();
+    var changedPlaceLatitude = changedPlace.geometry.location.G;
+    var changedPlaceLongitude = changedPlace.geometry.location.K;
+    firstPersonGeopoint = '['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']';
+    $('#geopoint').val('['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']');
+    $('location-from-autocomplete-confirmation').show();
+    console.log('firstPersonGeopoint: ' + firstPersonGeopoint);
+  });
+}
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+// [END region_geolocation]
+
+</script>

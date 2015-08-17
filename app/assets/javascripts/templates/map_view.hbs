@@ -1,25 +1,52 @@
-{{#each this}}
-	{{geolocation}}
-	{{name}}
-{{/each}}
-
-
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-
 <div id="map_wrapper">
     <div id="map_canvas" class="mapping"></div>
 </div>
 
 <script>
 
-jQuery(function($) {
+$(function($) {
+
+  var loadMapApi = function() {
     // Asynchronously Load the map API 
     var script = document.createElement('script');
     script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
-    document.body.appendChild(script);
+    script.id = 'google-maps-api'
+    document.getElementById('map_wrapper').appendChild(script);
+    console.log('Google maps API script appended.')
+  };
+
+  var removeElementsFromDomArray = function(domArray) {
+    for (i = 0; i < domArray.length; i++) {
+      domArray[i].parentNode.removeChild(domArray[i]);
+      console.log(domArray[i] + ' removed.')
+    }
+  }
+
+  var bodyScriptTagsOnDocumentLoad = document.querySelectorAll('body > script');
+  var removebodyScriptTagsOnDocumentLoad = function() {
+    if (bodyScriptTagsOnDocumentLoad) {
+      removeElementsFromDomArray(bodyScriptTagsOnDocumentLoad);
+    }
+  }
+
+  var divsOfClassPacContainerOnDocumentLoad = document.querySelectorAll('.pac-container');
+  var removeDivsOfClassPacContainerOnDocumentLoad = function() {
+    if (divsOfClassPacContainerOnDocumentLoad.length > 1) {
+      removeElementsFromDomArray(divsOfClassPacContainerOnDocumentLoad);
+    }
+  }
+
+  var actionAfterRemovingElementsFromDom = $.Deferred();
+
+  actionAfterRemovingElementsFromDom.done(removebodyScriptTagsOnDocumentLoad, removeDivsOfClassPacContainerOnDocumentLoad).done(function() {
+    loadMapApi()
+  });
+
+  actionAfterRemovingElementsFromDom.resolve();
+
 });
 
-function initialize() {
+var initialize = function() {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
@@ -31,20 +58,21 @@ function initialize() {
     map.setTilt(45);
         
     // Multiple Markers
+
     var markers = [
-        ['London Eye, London', 51.503454,-0.119562],
-        ['Palace of Westminster, London', 51.499633,-0.124755]
+       	{{#each this}}
+			['{{name}}', {{geolocation}}],
+		{{/each}}
     ];
                         
     // Info Window Content
     var infoWindowContent = [
+    	{{#each this}}
         ['<div class="info_content">' +
-        '<h3>London Eye</h3>' +
-        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
-        ['<div class="info_content">' +
-        '<h3>Palace of Westminster</h3>' +
-        '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
-        '</div>']
+        '<h3 class="see-victim-on-map" data-value={{id}}>{{name}}</h3>' +
+        '<p>{{convcreateddate}}</p>' + 
+        '</div>'],
+        {{/each}}
     ];
         
     // Display multiple markers on a map

@@ -42,7 +42,8 @@ App.Views.Search = Backbone.View.extend({
         'click .sign-up': 'loadSignup',
         //click event for log in button  
         'click .log-in': 'loadLogin',
-        'click .see-victim': 'showModal'
+        'click .see-victim': 'showModal',
+        'click .see-victim-on-map': 'showModalForMarkerOnMap'
 
     },
     goSearch: function() {
@@ -120,6 +121,12 @@ App.Views.Search = Backbone.View.extend({
         console.log('hello modal');
         var id = $(e.target).closest('td').data('value');
         var result = this.collection.fetchById(id);
+    },
+    showModalForMarkerOnMap: function(e){
+        var id = $(e.target).data('value')
+        var result = this.collection.fetchById(id);
+        console.log(e);
+        console.log(id);
     }
 });
 
