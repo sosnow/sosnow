@@ -20,6 +20,9 @@ class VictimsController < ApplicationController
 
 	def create
 		@victim = Victim.create(victim_params)
+		geo = victim_params['geolocation'].split(",")
+		googMap = 'https://www.google.com/maps?q=' + victim_params['geolocation']
+		$twitter.update(victim_params['name'] + " just posted an alert. For more information search for the user on Sos.now #sosnow \nLocation Map: " + googMap, {:lat => geo[0].to_f, :long => geo[1].to_f})
 		render json: @victim
 	end
 
