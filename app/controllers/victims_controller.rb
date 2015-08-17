@@ -21,8 +21,8 @@ class VictimsController < ApplicationController
 	def create
 		@victim = Victim.create(victim_params)
 		geo = victim_params['geolocation'].split(",")
-		
-		$twitter.update(victim_params['name'] + " just posted an alert from " + victim_params['location'] + ". For more information search for the user on Sos.now", {:lat => geo[0].to_f, :long => geo[1].to_f})
+
+		$twitter.update(victim_params['name'] + " just posted an alert from " + victim_params['location'] + ". For more information search for the user on Sos.now #sosnow", {:lat => geo[0].to_f, :long => geo[1].to_f})
 		render json: @victim
 	end
 
