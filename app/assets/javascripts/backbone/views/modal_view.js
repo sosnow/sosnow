@@ -24,8 +24,7 @@ App.Views.Modal = Backbone.View.extend({
 		            	var data1 = {};
 		            	var modelId = modelData[0].id;
 		            		for (var i in obj[1]) {
-			            	// for (var i=0; i<obj[1].length; i++) {
-			            		
+			            	            		
 			            		if (obj[1][i].id == modelId) {
 			            			data1 = {
 					              		modelData: modelData,
@@ -42,7 +41,7 @@ App.Views.Modal = Backbone.View.extend({
 
 
 			            		if (data1.seekerObj == null) {
-			            			// else {
+			            			
 			            				data1 = {
 						              		modelData: modelData,
 						              		data: data,
@@ -51,7 +50,7 @@ App.Views.Modal = Backbone.View.extend({
 				              			console.log(data1);
 		              		              	
 		              					$('#modal').html(template(data1));
-			            			// }
+			            		
 			            		}
 		            	}
 			        }); 
@@ -80,7 +79,7 @@ App.Views.Modal = Backbone.View.extend({
 		'click .no-add': 'cantHelp'
 	},
 	cantHelp: function() {
-		$('.add').remove();
+		// $('.add').remove();
 		console.log('seeker removed victim from his list');
 		var victimId = this.$('.no-add').data('value');
 		$.ajax({
@@ -105,13 +104,13 @@ App.Views.Modal = Backbone.View.extend({
 						var addButton = $('<button>').addClass('add');
 						addButton.html('Help');
 						addButton.attr('data-value', victimId);
-						$('#add-button').append(addButton);
+						$('#help-victim').append(addButton);
 	        	
 	        }
     	});
 	},
 	addVictims: function() {
-		$('.no-add').remove();
+		// $('.no-add').remove();
 		console.log('seeker added victim');
 		var victimId = this.$('.add').data('value');
 		$.ajax({
@@ -139,7 +138,7 @@ App.Views.Modal = Backbone.View.extend({
 		var undoButton = $('<button>').addClass('no-add');
 		undoButton.html('Not able to Help');
 		undoButton.attr('data-value', victimId);
-		$('#add-button').append(undoButton);
+		$('#help-victim').append(undoButton);
 
 	},
 	markSafe: function() {
@@ -152,7 +151,7 @@ App.Views.Modal = Backbone.View.extend({
 		var unsafeButton = $('<button>').addClass('mark-unsafe');
 		unsafeButton.html('Mark Unsafe');
 		unsafeButton.attr('data-value', victimId);
-		$('#add-button').append(unsafeButton);
+		$('#safe').append(unsafeButton);
 
 	}, 
 	markUnsafe: function() {
@@ -165,7 +164,7 @@ App.Views.Modal = Backbone.View.extend({
 		var safeButton = $('<button>').addClass('mark-safe');
 		safeButton.html('Mark Safe');
 		safeButton.attr('data-value', victimId);
-		$('#add-button').append(safeButton);
+		$('#safe').append(safeButton);
 	},
 	returnToSearch: function() {
 		this.$el.empty();
