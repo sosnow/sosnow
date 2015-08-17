@@ -1,28 +1,27 @@
+<div class='victim-model'>
 
-<div id='victim-model'>
-
-<h1>{{this.[0].name}}</h1>
-<p>{{this.[0].age}}</p>
-<p>{{this.[0].gender}}</p>
-<p>{{this.[0].phone}}</p>
-<p>{{this.[0].email}}</p>
-<p>{{this.[0].location}}</p>
-<p>{{this.[0].description}}</p>
+<h1>{{this.modelData.[0].name}}</h1>
+<p>{{this.modelData.[0].age}}</p>
+<p>{{this.modelData.[0].gender}}</p>
+<p>{{this.modelData.[0].phone}}</p>
+<p>{{this.modelData.[0].email}}</p>
+<p>{{this.modelData.[0].location}}</p>
+<p>{{this.modelData.[0].description}}</p>
 
 </div>
 
 <div id='add-button'>
 {{#if this.data}}
-	{{#if this.seekerObj}}
-	<p><button class='no-add' data-value={{this.modelData.[0].id}}>Has Been Added To Help List</button></p>
-	{{else}}
-	<p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
-	{{/if}}
-	{{#if this.modelData.[0].need_rescue}}
-	<p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
-	{{else}}
-	<p><button class='mark-unsafe' data-value={{this.modelData.[0].id}}>Mark Unsafe</button></p>
-	{{/if}}
+    {{#if this.seekerObj}}
+    <p><button class='no-add' data-value={{this.modelData.[0].id}}>Has Been Added To Help List</button></p>
+    {{else}}
+    <p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
+    {{/if}}
+    {{#if this.modelData.[0].need_rescue}}
+    <p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
+    {{else}}
+    <p><button class='mark-unsafe' data-value={{this.modelData.[0].id}}>Mark Unsafe</button></p>
+    {{/if}}
 {{/if}}
 </div>
 
@@ -30,27 +29,26 @@
 
 <br>
 
-<div id='victim-map'>
+<div class='victim-map-wrapper'>
 
 </div>
 
 <div id='comment-box'>
-	<h1> Comments </h1>
-	<input type='text area' name='comment' class='textbox' data-value={{this.modelData.[0].id}} placeholder='Enter your comments here'>
-	<input value={{this.modelData.[0].id}} type='hidden' id='victim-id-comment'>
+    <h1> Comments </h1>
+    <input type='text area' name='comment' class='textbox' data-value={{this.modelData.[0].id}} placeholder='Enter your comments here'>
+    <input value={{this.modelData.[0].id}} type='hidden' id='victim-id-comment'>
 
-	<button class='submit-comment'>submit</button>
+    <button class='submit-comment'>submit</button>
 </div>
 
 <div id='comment-list'>
 {{#each this.modelData.[1]}}
-	<div class='comment-with-name'>
-		<div class= "seeker" data-value={{id}}> {{seeker_name}}</div> 
-		<div class='comment-box'><p>{{description}}</p></div>
-	</div>
+    <div class='comment-with-name'>
+        <div class= "seeker" data-value={{id}}> {{seeker_name}}</div> 
+        <div class='comment-box'><p>{{description}}</p></div>
+    </div>
 {{/each}}
 </div>
 
 
 <p><button class='close'>close</button></p>
-
