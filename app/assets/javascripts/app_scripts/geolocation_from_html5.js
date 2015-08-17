@@ -5,7 +5,7 @@ var showPosition = function(position) {
 
   var latitudeFromHtml5 = position.coords.latitude;
   var longitudeFromHtml5 = position.coords.longitude;
-
+  
   $.ajax({
     cache: false,
     type: 'GET',
@@ -75,6 +75,15 @@ var showPosition = function(position) {
       }
     }
   }).done(function() {
+    $('#location').val(firstPersonLocationFromHtml5);
+    // firstPersonLocation = firstPersonLocationFromHtml5
+    $('#geolocation').val(firstPersonGeolocationFromHtml5);
+    // firstPersonGeolocation = firstPersonGeolocationFromHtml5;
+
+    $('#location-label').html('Location:');
+    $('#location-from-ip-display-box').val(firstPersonLocationFromHtml5);
+    $('#locationField').hide();
+    $('#location-from-ip-div').show();
     console.log('Location from HTML5: done');
   }).fail(function() {
     console.log('Location from HTML5: fail');
