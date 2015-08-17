@@ -43,6 +43,15 @@
  <div id="individual-person-map" class="mapping"></div>
 </div>
 
+<div id='seeker-list'>
+<p>List of Seekers</p>
+{{#each this.modelData.[2]}}
+<p class= "seeker" data-value={{id}}>{{name}}</p> 
+
+{{/each}}
+</div>
+
+
 <div id='comment-box'>
     <h1> Comments </h1>
     <input type='text area' name='comment' class='textbox' data-value={{this.modelData.[0].id}} placeholder='Enter your comments here'>
