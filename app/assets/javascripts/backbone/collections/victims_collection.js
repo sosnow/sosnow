@@ -22,6 +22,6 @@ App.Collections.Victims = Backbone.Collection.extend({
 		var collection = new Backbone.Collection();
 		collection.reset(models);
 		return collection;
-	}
+	},
 });
 

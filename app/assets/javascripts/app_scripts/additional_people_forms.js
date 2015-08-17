@@ -6,8 +6,13 @@ var additionalPeopleCount = 0;
 
 var additionalPeopleForms = [];
 var additionalPersonXForm = undefined;
+
+// The second description value for the additional people
+// will be based on the description of the person who added them
+
 var additionalPeopleSecondDescription = undefined;
 
+// Object literal constructor for each additional person
 
 var additionalPeople = [];
 var AdditionalPerson = function(name, gender, age, injured, location, geolocation, second_description) {

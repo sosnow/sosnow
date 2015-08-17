@@ -4,17 +4,23 @@ App.Views.Search = Backbone.View.extend({
     initialize: function() {
         //sets template
         this.template = HandlebarsTemplates['search_box'];
-        
+        this.listenTo(this.collection, 'add', this.triggeredNew());
         this.render();
         this.renderAllItems();
 
     },
     renderAllItems: function() {
+        console.log('rendering triggered');
         //Empties div, inserts table template and then sends each model in the collection to the render function, from newest to oldest
         $('#victim-box').empty();
         $('#victim-box').html(HandlebarsTemplates['search_table']);
+        $('.victim-list').prepend('<div><b>Recently Added</b></div>');
         this.collection.reversed().each(this.renderItem, this);
-
+        var data = this.collection.reversed().toJSON();
+        $('#recent-map').html(HandlebarsTemplates['map_view'](data));
+    },
+    triggeredNew: function(){
+        // alert('A NEW USER WAS ADDED');
     },
     renderItem: function(model) {
         //Sends each model into the View to be rendered
@@ -45,7 +51,8 @@ App.Views.Search = Backbone.View.extend({
             name: $('[name=name]').val(),
             location: $('[name=location]').val(),
             date: $('#datepicker').val(),
-            need_Rescue: $('input[name="safe"]:checked').val()
+            need_Rescue: $('input[name="safe"]:checked').val(),
+            injured: $('input[name="injured"]:checked').val()
         };
         //Empties div and mounts table for results
         $('#victim-box').empty();
@@ -57,12 +64,18 @@ App.Views.Search = Backbone.View.extend({
         var locationFilter = new Backbone.Collection();
         var dateFilter = new Backbone.Collection();
         var safeFilter = new Backbone.Collection();
+        var injuredFilter = new Backbone.Collection();
 
-
-        for (var l = 0; l < this.collection.length; l++) {
-            var searchSafe = this.collection.models[l].attributes.need_rescue;
+        for (var m = 0; m<this.collection.length; m++){
+            var searchInjured = this.collection.models[m].attributes.injured;
+            if (searchInjured.toString() == data.injured) {
+                injuredFilter.add(this.collection.models[m]);
+            }
+        }
+        for (var l = 0; l < injuredFilter.length; l++) {
+            var searchSafe = injuredFilter.models[l].attributes.need_rescue;
             if (searchSafe.toString() == data.need_Rescue) {
-                safeFilter.add(this.collection.models[l]);
+                safeFilter.add(injuredFilter.models[l]);
             }
         }
         for (var i = 0; i < safeFilter.length; i++) {
@@ -78,7 +91,7 @@ App.Views.Search = Backbone.View.extend({
             }
         }
         for (var j = 0; j < locationFilter.length; j++) {
-            var searchDate = locationFilter.models[j].attributes.convCreatedDate;
+            var searchDate = locationFilter.models[j].attributes.convcreateddate;
             if ((searchDate == data.date) || (data.date === "")) {
                 dateFilter.add(locationFilter.models[j]);
                 var newResultView = new App.Views.Results({
