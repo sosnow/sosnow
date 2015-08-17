@@ -24,8 +24,7 @@ App.Views.Modal = Backbone.View.extend({
 		            	var data1 = {};
 		            	var modelId = modelData[0].id;
 		            		for (var i in obj[1]) {
-			            	// for (var i=0; i<obj[1].length; i++) {
-			            		
+			            	            		
 			            		if (obj[1][i].id == modelId) {
 			            			data1 = {
 					              		modelData: modelData,
@@ -42,7 +41,7 @@ App.Views.Modal = Backbone.View.extend({
 
 
 			            		if (data1.seekerObj == null) {
-			            			// else {
+			            			
 			            				data1 = {
 						              		modelData: modelData,
 						              		data: data,
@@ -51,7 +50,7 @@ App.Views.Modal = Backbone.View.extend({
 				              			console.log(data1);
 		              		              	
 		              					$('#modal').html(template(data1));
-			            			// }
+			            		
 			            		}
 		            	}
 			        }); 
