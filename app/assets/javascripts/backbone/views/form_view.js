@@ -70,4 +70,12 @@ App.Views.Forms = Backbone.View.extend({
         };
         return mmMonth(currentDate) + '/' + currentDate.getDate() + '/' + currentDate.getFullYear();
     },
+    destroyView: function() {
+    // COMPLETELY UNBIND THE VIEW
+    this.undelegateEvents();
+    this.$el.removeData().unbind(); 
+    // Remove view from DOM
+    // this.remove();  
+    // Backbone.View.prototype.remove.call(this);
+}
 });

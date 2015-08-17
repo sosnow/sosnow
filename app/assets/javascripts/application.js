@@ -62,7 +62,8 @@ var goToSearch = function(){
 
     };
 var goToAdd = function(){
-    	$('#page').empty();
+        App.form.destroyView();
+        $('#page').empty();
     	// App.search.remove();
     	// console.log('removing search view');
     	App.form = new App.Views.Forms({collection: App.victims});
