@@ -80,19 +80,13 @@ App.Views.Modal = Backbone.View.extend({
 		'click .no-add': 'cantHelp',
 		'click .seeker': 'loadSeeker'
 	},
-	loadSeeker: function() {
-		
+	loadSeeker: function(e) {
+		// var seekerId = this.$('.seeker').data('value');
+		var seekerId = $(e.target).closest('p').data('value');
 	 console.log('hello Seeker');
-  	 $.ajax({
-        url: '/sessions/new',
-        type: 'GET',
-        success: function(data) {
-
-
-            if (data){
-              $.ajax({
-              type: 'GET',
-              url: 'seekers/'+ data,
+  	 	$.ajax({
+            type: 'GET',
+            url: 'seekers/'+ seekerId,
                 success: function(data) {
                   console.log('hello');
                   console.log(data);
@@ -100,10 +94,7 @@ App.Views.Modal = Backbone.View.extend({
                   $('#search-bar').empty();
                   $('#search-bar').html(template(data));   
                 }
-              });
-            }
-        }
-    });
+        });
 	},
 	cantHelp: function() {
 		// $('.add').remove();
