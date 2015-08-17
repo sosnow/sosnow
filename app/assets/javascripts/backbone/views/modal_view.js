@@ -80,6 +80,7 @@ App.Views.Modal = Backbone.View.extend({
 		'click .no-add': 'cantHelp'
 	},
 	cantHelp: function() {
+		$('.add').remove();
 		console.log('seeker removed victim from his list');
 		var victimId = this.$('.no-add').data('value');
 		$.ajax({
@@ -110,7 +111,7 @@ App.Views.Modal = Backbone.View.extend({
     	});
 	},
 	addVictims: function() {
-
+		$('.no-add').remove();
 		console.log('seeker added victim');
 		var victimId = this.$('.add').data('value');
 		$.ajax({
