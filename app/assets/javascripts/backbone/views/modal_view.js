@@ -173,27 +173,27 @@ App.Views.Modal = Backbone.View.extend({
 		// this.destroy();
 		this.undelegateEvents();
 		this.stopListening();
-		$.ajax({
-	        url: '/sessions/new',
-	        type: 'GET',
-	        success: function(data) {
+		// $.ajax({
+	 //        url: '/sessions/new',
+	 //        type: 'GET',
+	 //        success: function(data) {
 
 
-	            if (data){
-	              $.ajax({
-	              type: 'GET',
-	              url: 'seekers/'+ data,
-	                success: function(data) {
-	                  console.log('hello');
-	                  console.log(data);
-	                  var template = HandlebarsTemplates['seeker'];
-	                  $('#search-bar').empty();
-	                  $('#search-bar').html(template(data));   
-	                }
-	              });
-	            }
-	        }
-   		});
+	 //            if (data){
+	 //              $.ajax({
+	 //              type: 'GET',
+	 //              url: 'seekers/'+ data,
+	 //                success: function(data) {
+	 //                  console.log('hello');
+	 //                  console.log(data);
+	 //                  var template = HandlebarsTemplates['seeker'];
+	 //                  $('#search-bar').empty();
+	 //                  $('#search-bar').html(template(data));   
+	 //                }
+	 //              });
+	 //            }
+	 //        }
+  //  		});
 
 	},
 	showComments: function() {
