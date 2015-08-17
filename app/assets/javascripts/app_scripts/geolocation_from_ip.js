@@ -1,13 +1,15 @@
  // Getting geolocation from IP address:
 
-  var latitudeFromIp = undefined;
-  var longitudeFromIp = undefined;
-  var cityFromIp = undefined;
-  var regionFromIp = undefined;
-  var countryFromIp = undefined;
-  var successGettingLocationFromIp = false;
-
   var getLocationFromIp = function() {
+
+    var latitudeFromIp = undefined;
+    var longitudeFromIp = undefined;
+    var cityFromIp = undefined;
+    var regionFromIp = undefined;
+    var countryFromIp = undefined;
+    var successGettingLocationFromIp = false;
+
+    $('location-label').val('Trying to get location...');
     $.ajax({
       cache: false,
       type: 'GET',
@@ -41,19 +43,21 @@
       console.log('Location from IP: done');
       if (firstPersonLocationFromHtml5 && firstPersonGeolocationFromHtml5) {
         $('#location').val(firstPersonLocationFromHtml5);
-        firstPersonLocation = firstPersonLocationFromHtml5
+        // firstPersonLocation = firstPersonLocationFromHtml5
         $('#geolocation').val(firstPersonGeolocationFromHtml5);
-        firstPersonGeolocation = firstPersonGeolocationFromHtml5;
+        // firstPersonGeolocation = firstPersonGeolocationFromHtml5;
 
-        $('#location-from-ip-display-box').val(firstPersonLocation);
+        $('location-label').val('Location:');
+        $('#location-from-ip-display-box').val(firstPersonLocationFromHtml5);
         $('#locationField').hide();
         $('#location-from-ip-div').show();
       } else {
         $('#geolocation').val(firstPersonGeolocationFromIp);
-        firstPersonLocation = firstPersonLocationFromIp;
+        // firstPersonLocation = firstPersonLocationFromIp;
         $('#location').val(firstPersonLocationFromIp);
-        firstPersonGeolocation = firstPersonGeolocationFromIp;
+        // firstPersonGeolocation = firstPersonGeolocationFromIp;
 
+        $('location-label').val('Location:');
         $('#location-from-ip-display-box').val(firstPersonLocationFromIp);
         $('#locationField').hide();
         $('#location-from-ip-div').show();
@@ -62,14 +66,16 @@
       console.log('Location from IP: fail');
       if (firstPersonLocationFromHtml5 && firstPersonGeolocationFromHtml5) {
         $('#location').val(firstPersonLocationFromHtml5);
-        firstPersonLocation = firstPersonLocationFromHtml5
+        // firstPersonLocation = firstPersonLocationFromHtml5
         $('#geolocation').val(firstPersonGeolocationFromHtml5);
-        firstPersonGeolocation = firstPersonGeolocationFromHtml5;
+        // firstPersonGeolocation = firstPersonGeolocationFromHtml5;
 
-        $('#location-from-ip-display-box').val(firstPersonLocation);
+        $('location-label').val('Location:');
+        $('#location-from-ip-display-box').val(firstPersonGeolocationFromHtml5);
         $('#locationField').hide();
         $('#location-from-ip-div').show();
+      } else {
+        $('location-label').val('Location:');
       }
     });
   };
-  getLocationFromIp();
