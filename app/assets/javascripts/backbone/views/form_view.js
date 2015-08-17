@@ -2,7 +2,11 @@ App.Views.Forms = Backbone.View.extend({
     el: '#page',
     events: {
         'click #first-request-help-button': 'addVictim',
-        'click #all-people-submitted-button': 'addAdditionalVictims'
+        'click #all-people-submitted-button': 'addAdditionalVictims',
+        'keyup #autocomplete': 'geoAutocomplete',
+        'click #first-request-help-button': 'firstHelpRequest',
+        'click #correct-location-button': 'correctLocationCss',
+        
     },
     initialize: function() {
         console.log('Form View Loaded');
@@ -77,5 +81,28 @@ App.Views.Forms = Backbone.View.extend({
     // Remove view from DOM
     // this.remove();  
     // Backbone.View.prototype.remove.call(this);
-}
+},
+geoAutocomplete: function() {
+    $('#geolocation').val('');
+    $('#location_specific').val('');
+    $('#location_specific').val($('#autocomplete').val());
+    // firstPersonGeolocation = undefined;
+    // firstPersonLocation = undefined;
+    console.log('geolocation: ' + $('#geolocation').val());
+    console.log('location specific: ' + $('#location_specific').val());
+  },
+  firstHelpRequest: function() {
+    $('#help-form').hide();
+    $('#help-form-submitted-message').show();
+    $('#additional-people-question').show();
+    $('#help-form-additional-people').show();
+  },
+  correctLocationCss: function() {
+    $(this).css('background', 'yellow');
+    // console.log('firstPersonGeolocation: ' + firstPersonGeolocation);
+    // console.log('firstPersonLocation: ' + firstPersonLocation);
+    console.log('geolocation: ' + $('#geolocation').val());
+    console.log('location: ' + $('#location').val());
+  },
+
 });
