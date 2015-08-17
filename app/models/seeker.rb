@@ -1,8 +1,9 @@
 class Seeker < ActiveRecord::Base
-
+	validates :email, :password_digest, presence: true, uniqueness: true
+	validates :name, presence: true
 	has_many :comments
 	has_and_belongs_to_many :victims
-	
+	# has_many :seekers_victims
 
 	def authenticate(email, pass)
 	    seeker = Seeker.where(:email => email).first

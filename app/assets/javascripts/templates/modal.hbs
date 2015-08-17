@@ -21,19 +21,19 @@
 </div>
 
 <div id='comment-box'>
-<h1> Comments </h1>
-<input type='text area' name='comment' class='textbox' data-value={{this.modelData.[0].id}} placeholder='Enter your comments here'>
-<input value={{this.modelData.[0].id}} type='hidden' id='victim-id-comment'>
+	<h1> Comments </h1>
+	<input type='text area' name='comment' class='textbox' data-value={{this.modelData.[0].id}} placeholder='Enter your comments here'>
+	<input value={{this.modelData.[0].id}} type='hidden' id='victim-id-comment'>
 
-<button class='submit-comment'>submit</button>
+	<button class='submit-comment'>submit</button>
 </div>
 
 <div id='comment-list'>
 {{#each this.modelData.[1]}}
-<div class='comment-with-name'>
-<div class= "seeker" data-value={{id}}> {{seeker_name}}</div> 
-	<div class='comment-box'><p>{{description}}</p></div>
-</div>
+	<div class='comment-with-name'>
+		<div class= "seeker" data-value={{id}}> {{seeker_name}}</div> 
+		<div class='comment-box'><p>{{description}}</p></div>
+	</div>
 {{/each}}
 </div>
 
