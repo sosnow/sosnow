@@ -9,10 +9,19 @@
 <p>{{this.modelData.[0].description}}</p>
 
 </div>
+
+<div id='add-button'>
 {{#if this.data}}
 <p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
-<p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
+	{{#if this.modelData.[0].need_rescue}}
+	<p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
+	{{else}}
+	<p><button class='mark-unsafe' data-value={{this.modelData.[0].id}}>Mark Unsafe</button></p>
+	{{/if}}
 {{/if}}
+</div>
+
+
 
 <br>
 

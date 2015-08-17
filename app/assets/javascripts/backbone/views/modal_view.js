@@ -20,7 +20,8 @@ App.Views.Modal = Backbone.View.extend({
 	              		modelData: modelData,
 	              		data: data
 	              	}
-	              	
+
+	              		              	
 	              	$('#modal').html(template(data1));
 	            }
 	            	else {
@@ -42,7 +43,8 @@ App.Views.Modal = Backbone.View.extend({
 		'click .close': 'returnToSearch',
 		'click .submit-comment': 'showComments',
 		'click .add': 'addVictims',
-		'click .mark-safe': 'markSafe'
+		'click .mark-safe': 'markSafe',
+		'click .mark-unsafe': 'markUnsafe'
 	},
 	addVictims: function() {
 		console.log('seeker added victim');
@@ -62,7 +64,7 @@ App.Views.Modal = Backbone.View.extend({
 	        		type: 'POST',
 	        		success: function(data) {
 	        			console.log(data);
-	        			debugger;
+	        			
 	        		}
 	        	})
 	        	
@@ -72,7 +74,29 @@ App.Views.Modal = Backbone.View.extend({
 	},
 	markSafe: function() {
 		console.log('victim was marked safe by the seeker');
+		var victimId = this.$('.mark-safe').data('value');
+
+		var mark = App.victims.get(victimId);
+		mark.save({need_rescue: false})
+		$('.mark-safe').remove();
+		var unsafeButton = $('<button>').addClass('mark-unsafe');
+		unsafeButton.html('Mark Unsafe');
+		unsafeButton.attr('data-value', victimId);
+		$('#add-button').append(unsafeButton);
+
 	}, 
+	markUnsafe: function() {
+		console.log('victim was marked unsafe by the seeker');
+		var victimId = this.$('.mark-unsafe').data('value');
+
+		var mark = App.victims.get(victimId);
+		mark.save({need_rescue: true})
+		$('.mark-unsafe').remove();
+		var safeButton = $('<button>').addClass('mark-safe');
+		safeButton.html('Mark Safe');
+		safeButton.attr('data-value', victimId);
+		$('#add-button').append(safeButton);
+	},
 	returnToSearch: function() {
 		this.$el.empty();
 		this.$el.fadeOut(100);
