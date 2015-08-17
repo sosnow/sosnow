@@ -131,14 +131,14 @@ App.Views.Modal = Backbone.View.extend({
 	        			        			
 	        		}
 	        	});
-	        	$('.add').remove();
-						var undoButton = $('<button>').addClass('no-add');
-						undoButton.html('Not able to Help');
-						undoButton.attr('data-value', victimId);
-						$('#add-button').append(undoButton);
-	        	
+	        	       	
 	        }
     	});
+    	$('.add').remove();
+		var undoButton = $('<button>').addClass('no-add');
+		undoButton.html('Not able to Help');
+		undoButton.attr('data-value', victimId);
+		$('#add-button').append(undoButton);
 
 	},
 	markSafe: function() {
