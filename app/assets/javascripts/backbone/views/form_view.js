@@ -12,14 +12,20 @@ App.Views.Forms = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template);
     },
+    geolocCheck: function (){
+        if ($('[name=geolocation').val().length>4){
+            return $('[name=geolocation').val();
+        }
+    },
     addVictim: function() {
         console.log('clicked');
+
         var data = {
             name: $('[name=name]').val(),
             age: $('[name=age]:checked').val(),
             gender: $('[name=gender]:checked').val(),
             location: $('[name=location]').val(),
-            geolocation: $('[name=geolocation').val(),
+            geolocation: this.geolocCheck(),
             description: $('[name=description]').val(),
             injured: $('[name=injured]').val(),
             email: $('[name=email]').val(),
