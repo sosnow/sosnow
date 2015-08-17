@@ -8,8 +8,8 @@
     var regionFromIp = undefined;
     var countryFromIp = undefined;
     var successGettingLocationFromIp = false;
+    $('#location-label').html('Trying to get location...');
 
-    $('location-label').val('Trying to get location...');
     $.ajax({
       cache: false,
       type: 'GET',
@@ -47,7 +47,7 @@
         $('#geolocation').val(firstPersonGeolocationFromHtml5);
         // firstPersonGeolocation = firstPersonGeolocationFromHtml5;
 
-        $('location-label').val('Location:');
+        $('#location-label').html('Location:');
         $('#location-from-ip-display-box').val(firstPersonLocationFromHtml5);
         $('#locationField').hide();
         $('#location-from-ip-div').show();
@@ -57,7 +57,7 @@
         $('#location').val(firstPersonLocationFromIp);
         // firstPersonGeolocation = firstPersonGeolocationFromIp;
 
-        $('location-label').val('Location:');
+        $('#location-label').html('Location:');
         $('#location-from-ip-display-box').val(firstPersonLocationFromIp);
         $('#locationField').hide();
         $('#location-from-ip-div').show();
@@ -70,12 +70,12 @@
         $('#geolocation').val(firstPersonGeolocationFromHtml5);
         // firstPersonGeolocation = firstPersonGeolocationFromHtml5;
 
-        $('location-label').val('Location:');
+        $('#location-label').html('Location:');
         $('#location-from-ip-display-box').val(firstPersonGeolocationFromHtml5);
         $('#locationField').hide();
         $('#location-from-ip-div').show();
       } else {
-        $('location-label').val('Location:');
+        $('#location-label').html('Location:');
       }
     });
   };

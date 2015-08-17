@@ -4,24 +4,17 @@ $(document).ready(function() {
 
   additionalPersonXForm = $('#additional-people-invisible').html();
 
-  $('#autocomplete').on('keyup', function() {
-    $('#geolocation').val('');
-    $('#location_specific').val('');
-    $('#location_specific').val($('#autocomplete').val());
-    // firstPersonGeolocation = undefined;
-    // firstPersonLocation = undefined;
-    console.log('geolocation: ' + $('#geolocation').val());
-    console.log('location specific: ' + $('#location_specific').val());
-  });
+  $('#autocomplete').on('keyup', function(e) {
+    var keyPressed = e.keyCode || e.which;
 
-  // $($('#autocomplete').val()).on('change', function() {
-  //   $('#geolocation').val($('#autocomplete').val());
-  //   $('#location').val($('#autocomplete').val());
-  //   // firstPersonGeolocation = undefined;
-  //   // firstPersonLocation = undefined;
-  //   console.log('geolocation: ' + $('#geolocation').val());
-  //   console.log('location: ' + $('#location').val());
-  // });
+    // keyCode 13 is return key; keyCode 9 is tab key
+    if ((keyPressed !== 13) && (keyPressed !== 9)) {
+      $('#geolocation').val('')
+      $('#location_specific').val($('#autocomplete').val());
+      console.log('geolocation: ' + $('#geolocation').val());
+      console.log('location specific: ' + $('#location_specific').val());
+    }
+  });
 
   $('#first-request-help-button').on('click', function() {
     $('#help-form').hide();
