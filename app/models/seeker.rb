@@ -19,4 +19,8 @@ class Seeker < ActiveRecord::Base
     	self.victims.push(victim) unless self.victims.include? victim
   	end
 
+  	def remove_victim(victim)
+    self.victims.destroy(victim) if self.victims.include? victim
+  	end
+
 end

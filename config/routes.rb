@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   resources :seekers do
     member do 
-     put 'add_victim'
+      put 'add_victim'
+      put 'remove_victim'
     end
  end
 
  post 'seekers/:id/:victim_id' => 'seekers#add_victim'
+ delete 'seekers/:id/:victim_id' => 'seekers#remove_victim'
 
   resources :victims, only: [:index, :show, :create, :update]
   resources :comments, only: [:index, :show, :create]

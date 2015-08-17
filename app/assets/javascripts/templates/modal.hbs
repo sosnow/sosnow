@@ -12,7 +12,11 @@
 
 <div id='add-button'>
 {{#if this.data}}
-<p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
+	{{#if this.seekerObj}}
+	<p><button class='no-add' data-value={{this.modelData.[0].id}}>Has Been Added To Help List</button></p>
+	{{else}}
+	<p><button class='add' data-value={{this.modelData.[0].id}}>Help</button></p>
+	{{/if}}
 	{{#if this.modelData.[0].need_rescue}}
 	<p><button class='mark-safe' data-value={{this.modelData.[0].id}}>Mark Safe</button></p>
 	{{else}}

@@ -41,6 +41,13 @@ class SeekersController < ApplicationController
 		render json: seeker
 	end
 
+	 def remove_victim
+	    seeker = Seeker.find(params[:id])
+	    victim = Victim.find(params[:victim_id])
+	    seeker.remove_victim(victim)
+	    render json: seeker
+  	end
+
 
 	private
 

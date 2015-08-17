@@ -10,19 +10,51 @@ App.Views.Modal = Backbone.View.extend({
 		console.log(this.model);
 		
 		var modelData = this.model;
+
 		var template = HandlebarsTemplates['modal'];
 		$.ajax({
             type: 'GET',
             url: '/sessions/new',
             success: function(data) {
             	if (data) {
-	              	var data1 = {
-	              		modelData: modelData,
-	              		data: data
-	              	}
+	            	$.ajax({
+			            type: 'GET',
+			            url: '/seekers/'+data,
+			            success: function(obj) {
+		            	var data1 = {};
+		            	var modelId = modelData[0].id;
+		            		for (var i in obj[1]) {
+			            	// for (var i=0; i<obj[1].length; i++) {
+			            		
+			            		if (obj[1][i].id == modelId) {
+			            			data1 = {
+					              		modelData: modelData,
+					              		data: data,
+					              		seekerObj: modelId
+					              	}
 
-	              		              	
-	              	$('#modal').html(template(data1));
+					              	console.log(data1);
+
+			              			$('#modal').html(template(data1));
+
+			            		}
+			            	}
+
+
+			            		if (data1.seekerObj == null) {
+			            			// else {
+			            				data1 = {
+						              		modelData: modelData,
+						              		data: data,
+						              		seekerObj: null
+					              		}
+				              			console.log(data1);
+		              		              	
+		              					$('#modal').html(template(data1));
+			            			// }
+			            		}
+		            	}
+			        }); 
 	            }
 	            	else {
 	            		var data1 = {
@@ -44,9 +76,41 @@ App.Views.Modal = Backbone.View.extend({
 		'click .submit-comment': 'showComments',
 		'click .add': 'addVictims',
 		'click .mark-safe': 'markSafe',
-		'click .mark-unsafe': 'markUnsafe'
+		'click .mark-unsafe': 'markUnsafe',
+		'click .no-add': 'cantHelp'
+	},
+	cantHelp: function() {
+		console.log('seeker removed victim from his list');
+		var victimId = this.$('.no-add').data('value');
+		$.ajax({
+	        url: '/sessions/new',
+	        type: 'GET',
+	        success: function(data) {
+
+	        	var data1 = {
+	        		seeker_id: data,
+	        		victim_id: victimId
+	        	}
+
+	        	$.ajax({
+	        		url: '/seekers/'+data+'/'+victimId,
+	        		type: 'DELETE',
+	        		success: function(data) {
+	        			console.log(data);
+	        			        			
+	        		}
+	        	});
+	        	$('.no-add').remove();
+						var addButton = $('<button>').addClass('add');
+						addButton.html('Help');
+						addButton.attr('data-value', victimId);
+						$('#add-button').append(addButton);
+	        	
+	        }
+    	});
 	},
 	addVictims: function() {
+
 		console.log('seeker added victim');
 		var victimId = this.$('.add').data('value');
 		$.ajax({
@@ -64,9 +128,14 @@ App.Views.Modal = Backbone.View.extend({
 	        		type: 'POST',
 	        		success: function(data) {
 	        			console.log(data);
-	        			
+	        			        			
 	        		}
-	        	})
+	        	});
+	        	$('.add').remove();
+						var undoButton = $('<button>').addClass('no-add');
+						undoButton.html('Not able to Help');
+						undoButton.attr('data-value', victimId);
+						$('#add-button').append(undoButton);
 	        	
 	        }
     	});
