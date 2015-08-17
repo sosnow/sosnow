@@ -55,16 +55,16 @@ App.Views.Signlog = Backbone.View.extend({
               $.ajax({
               type: 'GET',
               url: 'seekers/'+ data,
-              success: function(data) {
-                console.log('hello');
-                console.log(data);
-                var template = HandlebarsTemplates['seeker'];
-                $('#search-bar').empty();
-                $('#search-bar').html(template(data));   
-              }
-                });
-              }
+                success: function(data) {
+                  console.log('hello');
+                  console.log(data);
+                  var template = HandlebarsTemplates['seeker'];
+                  $('#search-bar').empty();
+                  $('#search-bar').html(template(data));   
+                }
+              });
             }
+        }
     });
   }
 });
