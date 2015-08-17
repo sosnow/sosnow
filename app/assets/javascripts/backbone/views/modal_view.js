@@ -21,6 +21,7 @@ App.Views.Modal = Backbone.View.extend({
 			            type: 'GET',
 			            url: '/seekers/'+data,
 			            success: function(obj) {
+
 		            	var data1 = {};
 		            	var modelId = modelData[0].id;
 		            		for (var i in obj[1]) {
@@ -76,7 +77,33 @@ App.Views.Modal = Backbone.View.extend({
 		'click .add': 'addVictims',
 		'click .mark-safe': 'markSafe',
 		'click .mark-unsafe': 'markUnsafe',
-		'click .no-add': 'cantHelp'
+		'click .no-add': 'cantHelp',
+		'click .seeker': 'loadSeeker'
+	},
+	loadSeeker: function() {
+		
+	 console.log('hello Seeker');
+  	 $.ajax({
+        url: '/sessions/new',
+        type: 'GET',
+        success: function(data) {
+
+
+            if (data){
+              $.ajax({
+              type: 'GET',
+              url: 'seekers/'+ data,
+                success: function(data) {
+                  console.log('hello');
+                  console.log(data);
+                  var template = HandlebarsTemplates['seeker'];
+                  $('#search-bar').empty();
+                  $('#search-bar').html(template(data));   
+                }
+              });
+            }
+        }
+    });
 	},
 	cantHelp: function() {
 		// $('.add').remove();
