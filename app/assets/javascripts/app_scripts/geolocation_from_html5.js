@@ -1,19 +1,17 @@
 // Getting geolocation from HTML5:
 
-var latitudeFromHtml5 = undefined;
-var longitudeFromHtml5 = undefined;
 
 var showPosition = function(position) {
-  latitudeFromHtml5 = position.coords.latitude;
-  longitudeFromHtml5 = position.coords.longitude;
+
+  var latitudeFromHtml5 = position.coords.latitude;
+  var longitudeFromHtml5 = position.coords.longitude;
+
   $.ajax({
     cache: false,
     type: 'GET',
     dataType: 'json',
     url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitudeFromHtml5 + ',' + longitudeFromHtml5 + '&sensor=true',
     success: function(data) {
-      $('#geolocation').val('['+ latitudeFromHtml5 + ',' + longitudeFromHtml5 + ']');
-
       var locality = undefined;
       var administrativeAreaLevel1 = undefined;
       var administrativeAreaLevel2 = undefined;
@@ -21,7 +19,6 @@ var showPosition = function(position) {
 
       for (var i = 0; i < (data.results).length; i++) {
         for (var j = 0; j < (data.results[i].address_components).length; j++) {
-          var localityString = 'locality'
           if ((data.results[i].address_components[j].types).indexOf('locality') !== -1) {
             locality = data.results[i].address_components[j].long_name
           }
@@ -70,10 +67,6 @@ var showPosition = function(position) {
     },
     error: function() {
       console.log('Location from HTML5: error');
-      if (successGettingLocationFromIp === false) {
-        $('#location-from-ip-div').hide();
-        $('#locationField').show();
-      }
     },
     timeout: 6000,
     complete: function(jqXHR, textStatus) { 
@@ -83,14 +76,6 @@ var showPosition = function(position) {
     }
   }).done(function() {
     console.log('Location from HTML5: done');
-    $('#location').val(firstPersonLocationFromHtml5);
-    firstPersonLocation = firstPersonLocationFromHtml5
-    $('#geolocation').val(firstPersonGeolocationFromHtml5);
-    firstPersonGeolocation = firstPersonGeolocationFromHtml5;
-
-    $('#location-from-ip-display-box').val(firstPersonLocation);
-    $('#locationField').hide();
-    $('#location-from-ip-div').show();
   }).fail(function() {
     console.log('Location from HTML5: fail');
   });;
@@ -108,4 +93,3 @@ var getLocationFromHtml5 = function() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   }
 }
-getLocationFromHtml5();

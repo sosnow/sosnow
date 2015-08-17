@@ -17,6 +17,13 @@ App.Views.Forms = Backbone.View.extend({
             return $('[name=geolocation').val();
         }
     },
+    specificLocCheck: function() {
+        if ( $('[name=location_specific]').val() !== '') {
+            return $('[name=description]').val()
+        } else {
+            return ($('[name=description]').val() + '\n[Additional location information: ' +  $('[name=location_specific]').val() + ']') 
+        }
+    },
     addVictim: function() {
         console.log('clicked');
 
@@ -26,7 +33,7 @@ App.Views.Forms = Backbone.View.extend({
             gender: $('[name=gender]:checked').val(),
             location: $('[name=location]').val(),
             geolocation: this.geolocCheck(),
-            description: $('[name=description]').val(),
+            description: this.specificLocCheck(),
             injured: $('[name=injured]').val(),
             email: $('[name=email]').val(),
             phone: $('[name=phone]').val(),

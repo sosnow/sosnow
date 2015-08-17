@@ -46,10 +46,11 @@
   <div id="location-input-div" class="input-div">
     <div id="location-label" class="form-section-label">Location:</div>
     <input type="hidden" id="location" name="location">
+    <input type="hidden" id="location_specific" name="location_specific">
     <div id="location-from-ip-div" style="display: none;">
       <input type="text" id="location-from-ip-display-box" class="input-text" readonly>
       <div id="location-from-ip-confirmation" class="line-message-div">
-        <div class="line-message">Accurate location?</div>
+        <div class="line-message">Is this accurate?</div>
         <a id="correct-location-button" class='form-button form-button-a-tag'><center>Yes</center></a>
         <a id="incorrect-location-button" class='form-button form-button-a-tag'><center>No</center></a>
         <br>
@@ -58,8 +59,6 @@
     <div id="locationField">
       <input id="autocomplete" class="input-text" onFocus="geolocate()" type="text" placeholder="Enter your location"></input>
       <div id="location-from-autocomplete-confirmation" style='display: none;' class="line-message-div">
-        <a id="ok-location-button" class='form-button form-button-a-tag'><center>OK</center></a>
-        <a id="change-location-button" class='form-button form-button-a-tag'><center>Change</center></a>
         <br>
       </div>
     </div>
@@ -228,6 +227,25 @@
 
 $(document).ready(function() {
 
+  $('#name').val('');
+  $('#gender').val('');
+  $('#age').val('');
+  $('#description').val('');
+  $('#injured').val('false');
+  $('#email').val('');
+  $('#phone').val('');
+  $('#geolocation').val('');
+  $('#location').val('');
+  $('#loation_specific').val('');
+
+  var firstPersonLocationFromIp = undefined;
+  var firstPersonLocationFromHtml5 = undefined;
+  var firstPersonGeolocationFromIp = undefined;
+  var firstPersonGeolocationFromHtml5 = undefined;
+
+  getLocationFromIp();
+  getLocationFromHtml5();
+
   var loadMapApi = function() {
     // Asynchronously Load the map API 
     var script = document.createElement('script');
@@ -283,12 +301,78 @@ function initAutocomplete() {
   // fields in the form.
   autocomplete.addListener('place_changed', function() {
     var changedPlace = autocomplete.getPlace();
+
+    var locality = undefined;
+    var administrativeAreaLevel1 = undefined;
+    var administrativeAreaLevel2 = undefined;
+    var country = undefined;
+
+    for (var i = 0; i < (changedPlace.address_components).length; i++) {
+      if (locality === undefined) {
+        if ((changedPlace.address_components[i].types).indexOf('locality') !== -1) {
+          locality = changedPlace.address_components[i].long_name;
+          console.log('locality: ' + locality);
+        }
+      } else {
+        break;
+      }
+    }
+    for (var i = 0; i < (changedPlace.address_components).length; i++) {
+      if (administrativeAreaLevel1 === undefined) {
+        if ((changedPlace.address_components[i].types).indexOf('administrative_area_level_1') !== -1) {
+          administrativeAreaLevel1 = changedPlace.address_components[i].short_name;
+          console.log('administrative_area_level_1 : ' + administrativeAreaLevel1);
+        }
+      } else {
+        break;
+      } 
+    }
+    for (var i = 0; i < (changedPlace.address_components).length; i++) {
+      if (administrativeAreaLevel2 === undefined) {
+        if ((changedPlace.address_components[i].types).indexOf('administrative_area_level_2') !== -1) {
+          administrativeAreaLevel2 = changedPlace.address_components[i].long_name;
+          console.log('administrative_area_level_2: ' + administrativeAreaLevel2);
+        }
+      } else {
+        break;
+      }
+    }
+    for (var i = 0; i < (changedPlace.address_components).length; i++) {
+      if (country === undefined) {
+        if ((changedPlace.address_components[i].types).indexOf('country') !== -1) {
+          country = changedPlace.address_components[i].long_name;
+          console.log('country: ' + country);
+        }
+      } else {
+        break;
+      }
+    }
+
+    var locationComponentsArray = [];
+    var locationComponentsString = '';
+
+    if (locality) {
+      locationComponentsArray.push(locality);
+    } else if (administrativeAreaLevel2) {
+      locationComponentsArray.push(administrativeAreaLevel2);
+    }
+    if (administrativeAreaLevel1) {
+      locationComponentsArray.push(administrativeAreaLevel1);
+    }
+    if (country) {
+      locationComponentsArray.push(country);
+    }
+    locationComponentsString = locationComponentsArray.join(', ');
+
     var changedPlaceLatitude = changedPlace.geometry.location.G;
     var changedPlaceLongitude = changedPlace.geometry.location.K;
-    firstPersonGeopoint = '['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']';
-    $('#geopoint').val('['+ changedPlaceLatitude + ',' + changedPlaceLongitude + ']');
+    firstPersonGeolocation = changedPlaceLatitude + ',' + changedPlaceLongitude;
+    $('#geolocation').val(changedPlaceLatitude + ',' + changedPlaceLongitude);
+    $('#location').val(locationComponentsString);
+    $('#location_specific').val( $('#autocomplete').val() );
     $('location-from-autocomplete-confirmation').show();
-    console.log('firstPersonGeopoint: ' + firstPersonGeopoint);
+    console.log('geolocation: ' + $('#geolocation').val());
+    console.log('location: ' + $('#location').val());
   });
 }
 
