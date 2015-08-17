@@ -1,14 +1,28 @@
 Rails.application.routes.draw do
   root to: 'application#index'
 
-  resources :seekers, only: [:index, :show, :new, :create, :update]
+  resources :seekers do
+    member do 
+      put 'add_victim'
+      put 'remove_victim'
+    end
+ end
+
+ post 'seekers/:id/:victim_id' => 'seekers#add_victim'
+ delete 'seekers/:id/:victim_id' => 'seekers#remove_victim'
+
   resources :victims, only: [:index, :show, :create, :update]
   resources :comments, only: [:index, :show, :create]
   resource :account, :controller => 'seekers', :only => [:new, :create]
+  # resources :seekers_victims
 
   get 'sessions/new' => 'sessions#new'
   post 'sessions' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'
+
+  # get 'seekers_victims' => 'seekers_victims#index'
+  # post 'seekers_victims' => 'seekers_victims#create'
+  # delete 'seekers_victims' => 'seekers_victims#destroy'
 
 
 

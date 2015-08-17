@@ -6,6 +6,8 @@ App.Collections.Victims = Backbone.Collection.extend({
 
     },
     fetchById: function(id) {
+
+      
         $.ajax({
             url: this.url + '/' + id,
             type: 'GET',
