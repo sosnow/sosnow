@@ -9,6 +9,7 @@ App.Views.Forms = Backbone.View.extend({
         'click #first-additional-person-button': 'firstAddPerson',
         'click #subsequent-additional-person-button': 'subsequentAddPerson',
         'click #submit-all-button': 'submitAll',
+        'click #no-additional-person-button': 'backToSearchPage'
 
 
     },
@@ -38,6 +39,7 @@ App.Views.Forms = Backbone.View.extend({
    },
     addVictim: function() {
         console.log('clicked');
+        $('#help-form').hide();
         var data = {
             name: $('[name=name]').val(),
             age: $('[name=age]:checked').val(),
@@ -50,22 +52,21 @@ App.Views.Forms = Backbone.View.extend({
             phone: $('[name=phone]').val(),
             convcreateddate: this.dateConversion()
         };
-        $('#help-form').hide();
-        $('#help-form-submitted-message').show();
-        $('#additional-people-question').show();
-        $('#help-form-additional-people').show();
             var firstPersonLocationSpecific = $('#location_specific').val();
             var firstPersonName = $('#name').val();
             var firstPersonDescription = $('#description').val();
             var firstPersonPhone = $('#phone').val();
             var firstPersonEmail = $('#email').val();
             if ($('#location_specific').val() !== '') {
-              additionalPeopleSecondDescription = 'Person entered into the data base by ' + firstPersonName + ', who also requested help for themselves and was likely near this person at the time the request was made. Contact info for ' + firstPersonName + ': [email: ' + firstPersonEmail + ' | phone: ' + firstPersonPhone + ']. Additional information submitted along ' + firstPersonPhone + '\'s own help request: [' + firstPersonDescription + '].'
+              additionalPeopleSecondDescription = 'Person entered into the database by ' + firstPersonName + ', who also requested help for themselves and was likely near this person at the time the request was made. Contact info for ' + firstPersonName + ': [email: ' + firstPersonEmail + ' | phone: ' + firstPersonPhone + ']. Additional information submitted along ' + firstPersonPhone + '\'s own help request: [' + firstPersonDescription + '].'
             } else { 
-              additionalPeopleSecondDescription = 'Person entered into the data base by ' + firstPersonName + ', who also requested help for themselves and was likely near this person at the time the request was made. \nContact info for ' + firstPersonName + ': [email: ' + firstPersonEmail + ' | phone: ' + firstPersonPhone + ']. Additional information submitted along ' + firstPersonPhone + '\'s own help request: [' + firstPersonDescription + ']. \n[Additional location information: ' +  $('[name=location_specific]').val() + ']'
+              additionalPeopleSecondDescription = 'Person entered into the database by ' + firstPersonName + ', who also requested help for themselves and was likely near this person at the time the request was made. \nContact info for ' + firstPersonName + ': [email: ' + firstPersonEmail + ' | phone: ' + firstPersonPhone + ']. Additional information submitted along ' + firstPersonPhone + '\'s own help request: [' + firstPersonDescription + ']. \n[Additional location information: ' +  $('[name=location_specific]').val() + ']'
             }
         console.log(data);
         this.collection.create(data);
+        $('#help-form-submitted-message').show();
+        $('#additional-people-question').show();
+        $('#help-form-additional-people').show();
     },
     addAdditionalVictims: function() {
         var additionalPeopleCount = additionalPeople.length;
@@ -83,7 +84,6 @@ App.Views.Forms = Backbone.View.extend({
             this.collection.create(data);
         }
             console.log('All people submitted.');
-
     },
     dateConversion: function(){
         //Adds date in Western Format
@@ -177,7 +177,14 @@ geoAutocomplete: function(e) {
     var lastAdditionalPersonNumber = additionalPeople.length + 1;
     additionalPeople.push( new AdditionalPerson ( ($('#name_' + lastAdditionalPersonNumber ).val()), ($('[name=gender_' + lastAdditionalPersonNumber + ']:checked').val()), ($('[name=age_' + lastAdditionalPersonNumber + ']:checked').val()), ($('[name=injured_' + lastAdditionalPersonNumber + ']:checked').val()), $('[name=location]').val(), $('[name=geolocation]').val(), additionalPeopleSecondDescription) );
     $("#all-people-submitted-button").click();
+    this.destroyView();
+    goToSearch();
 
+  },
+  backToSearchPage: function(){
+    this.destroyView();
+    goToSearch();
   }
+
 
 });
