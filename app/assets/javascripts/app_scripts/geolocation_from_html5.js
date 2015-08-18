@@ -87,7 +87,7 @@ var showPosition = function(position) {
     console.log('Location from HTML5: done');
   }).fail(function() {
     console.log('Location from HTML5: fail');
-  });;
+  });
 }
 
 var showError = function() {
