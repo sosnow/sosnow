@@ -3,113 +3,143 @@ body, html {
 }
 
 body {
-	font-family: monaco, Consolas, 'Lucida Console', monospace;
-	font-size: 14px;
-	color: black;
-	background-color: DarkRed;
+    font-family: monaco, Consolas, 'Lucida Console', monospace;
+    font-size: 14px;
+    color: black;
+    background-color: white;
 }
 
 #top-bar {
-	position: fixed;
-	width: 100%;
-	color: white;
-	background-color: DarkSlateGrey;
-	height: 50px;
-	z-index: 200;
+    position: fixed;
+    width: 100%;
+    color: white;
+    background-color: DarkSlateGrey;
+    height: 50px;
+    z-index: 200;
 }
 
 #brand {
-	font-size: 26px;
-	margin: 0 5px 0;
-	padding: 10px 0 0 0;
-	float: left;
+    font-size: 26px;
+    margin: 0 5px 0;
+    padding: 10px 0 0 1px;
+    float: left;
 }
 
-#navigation-buttons {
-	padding: 10px 0 0 0;
-	position: absolute;
-	right: 20px;
-	cursor: pointer;
+#navigation-buttons-container {
+	top: -2px;
+    padding: 10px 0 0 0;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
 }
 
 .navigation-button {
-	cursor: pointer;
+    cursor: pointer;
+}
+
+.navigation-button:hover {
+	color: MediumTurquoise;
+}
+
+
+#left-bar {
+	height: 100%;
+	width: 5%;
+	position: fixed;
+	background-color: DarkRed;
+	right: 95%;
+	z-index: 180;
+}
+
+#right-bar {
+	height: 100%;
+	width: 5%;
+	position: fixed;
+	background-color: DarkRed;
+	left: 95%;
+	z-index: 181;
+}
+
+#page-container {
+	top: 50px;
+	position: absolute;
+	left: 5%;
+	right: 5%;
 }
 
 #page {
-	position: relative;
-	top: 50px;
-	padding-top: 20px;
-	min-width: 360px;
-	width: 90%;
-	margin: 0 auto;
-	min-height: 100%;
-	background-color: white;
+    position: relative;
+    padding-bottom: 20px;
+    min-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100%;
+    background-color: white;
 }
 
 #help-form-submitted-message {
-	background-color: beige;
-	margin: 0 auto;
-	padding: 10px;
-	width: 300px; 
-	border: 4px solid #CCC;
-	border-radius: 10px;
+    background-color: beige;
+    margin: 0 auto;
+    padding: 10px;
+    width: 300px; 
+    border: 4px solid #CCC;
+    border-radius: 10px;
 }
 
 #help-form {
-	margin: 0 auto;
-	width: 300px; 
+    margin: 0 auto;
+    width: 300px; 
 }
 
 .pac-icon {
-	display: none;
+    display: none;
 }
 
 .form-button {
-	background-color: #F3F9FF;
-	display: block;
-	height: 20px;
-	width: 50px;
-	margin: 0 2px 0;
-	padding: 2px 0 0;
-	float: left;
-	border: 2px solid dimgray;
-	border-radius: 50px;
-	cursor: pointer;
+    background-color: #F3F9FF;
+    display: block;
+    height: 20px;
+    width: 50px;
+    margin: 0 2px 0;
+    padding: 2px 0 0;
+    float: left;
+    border: 2px solid dimgray;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
 .form-button-a-tag:link {
-	color: black; 
+    color: black; 
     text-decoration:none;
 }
 
 .form-button-a-tag:visited {
-	color: black; 
+    color: black; 
     text-decoration: none;
 }
 
 .form-button-a-tag:hover { 
-	color: black;
+    color: black;
     background-color: #C8D6E8;
     text-decoration: none;
 }
 
 .form-button-a-tag:active {
-	color: black; 
+    color: black; 
     background-color: #C8D6E8;
     text-decoration: none;
 }
 
 .radio-button-ul {
-	position: relative;
-	list-style-type: none;
-	padding: 0;
-	top: -10px;
+    position: relative;
+    list-style-type: none;
+    padding: 0;
+    top: -10px;
 }
 
 .radio-button-ul li {
-	float: left;
-	margin: 1px 5px 1px 0;
+    float: left;
+    margin: 1px 5px 1px 0;
     width: 70px;
     height: 30px;
     position: relative;
@@ -135,12 +165,12 @@ body {
 }
 
 .radio-button-ul label {
-	background-color: #F3F9FF;
-	padding: 5px;
-	border: 2px solid dimgray; 
-	border-radius: 50px;
-	cursor: pointer;
-	z-index: 90;
+    background-color: #F3F9FF;
+    padding: 5px;
+    border: 2px solid dimgray; 
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 90;
 }
 
 .radio-button-ul label:hover {
@@ -148,89 +178,142 @@ body {
 }
 
 .input-div {
-	margin: 11px 0 0;
-	clear: both;
+    margin: 11px 0 0;
+    clear: both;
 }
 
 .input-text {
-	background-color: #F3F9FF;
-	height: 30px;
-	width: 98%;
-	font-size: 18px;
-	border-radius: 5px;
-	border: 2px solid dimgray;
+    background-color: #F3F9FF;
+    height: 30px;
+    width: 98%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 2px solid dimgray;
 }
 
 .input-textarea {
-	background-color: #F3F9FF;
-	resize: none;
-	width: 98%;
-	font-size: 18px;
-	border-radius: 5px;
-	border: 2px solid dimgray;
+    background-color: #F3F9FF;
+    resize: none;
+    width: 98%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 2px solid dimgray;
 }
 
 .line-message {
-	float: left;
-	margin: 2px 5px 0 0;
+    float: left;
+    margin: 2px 5px 0 0;
 }
 
 .line-message-div {
-	position: relative;
-	margin: 5px 0 20px 0;
+    position: relative;
+    margin: 5px 0 20px 0;
 }
 
 .form-section-label {
-	margin: 10px 0 5px;
+    margin: 10px 0 5px;
 }
 
 .request-help-button {
-	background-color: #F3F9FF;
+    background-color: #F3F9FF;
 }
 
 .form-paragraph {
-	margin: 0 auto;
-	width: 300px; 
+    margin: 0 auto;
+    width: 300px; 
 }
 
 .additional-person-form {
-	background-color: #E6F5EB;
-	margin: 0 auto;
-	padding: 0 10px 45px;
-	width: 300px; 
-	border: 4px solid #CCC;
-	border-radius: 10px;
-}
-
-#map_wrapper {
-
-}
-
-#map_canvas {
-	top: 60px;
-    width: 400px;
-    height: 400px;
-}
-
-#individual-person-map {
-	width: 300px;
-	height: 300px;
-}
-
-#victim-box {
-	float: left;
-	display: inline-block;
+    background-color: #E6F5EB;
+    margin: 0 auto;
+    padding: 0 10px 45px;
+    width: 300px; 
+    border: 4px solid #CCC;
+    border-radius: 10px;
 }
 
 #recent-map {
-	float: left;
+	top: 60px;
+}
+
+#map_wrapper {
+	height: 200px;
+}
+
+#map_canvas {
+    height: 100%;
+    width: 100%;
+}
+
+#individual-person-map {
+    width: 300px;
+    height: 300px;
+}
+
+#victim-box {
+	min-width: 90%;
+    float: left;
+    display: inline-block;
+}
+
+.victim-list {
+	width: 100%
+}
+
+#sign-log {
+	width: 90%;
+	height: 20px;
+	background-color: #E6F5EB;
+	position: fixed;
+	padding: 10px 0;
+	top: 50px;
+	z-index: 182;
+	border-bottom: 2px solid #CCC;
+}
+
+.seeker {
+	position: relative;
+	top: -12px;
+	padding: 0 10px;
 	display: inline-block;
 }
 
-.list {
-	cursor: pointer;
+.sign {
+	position: absolute;
+	right: 10px;
 }
 
-.list:hover { 
-    background-color: beige;
+.log-in {
+	width: 70px;
+	float: left;
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+/*	padding-left: 10px;
+	padding-right: 10px;*/
+}
+
+.sign-up {
+	width: 70px;
+	float: left;
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 5px;
+/*	padding-left: 10px;
+	padding-right: 10px;*/
+}
+
+.log-out {
+	width: 70px;
+	float: right;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 10px;
+}
+/*	padding-left: 10px;
+	padding-right: 10px;
+}*/
+
+.results-row {
+	min-width: 80%;
 }
