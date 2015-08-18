@@ -245,11 +245,6 @@ body {
     width: 100%;
 }
 
-#individual-person-map {
-    width: 300px;
-    height: 300px;
-}
-
 #victim-box {
 	min-width: 90%;
     float: left;

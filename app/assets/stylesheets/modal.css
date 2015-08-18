@@ -3,7 +3,7 @@
     position: fixed;
     width: 100%;
     background: rgba(0,0,0,.9);
-    color: lightgrey;
+    color: white;
     /*margin: 0 auto;*/
     padding-top: 5%;
     text-align: center;
@@ -13,3 +13,162 @@
     margin-bottom: 10%;
 
 }
+
+#container {
+    width: 80%;
+    border-radius: 5px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-flow: row-wrap;
+    justify-content: space-around;
+    background: rgba(0,0,0,.99);
+    background-color: #5B5B5B;
+    height: 315px;
+
+    /*align-content: space-around;*/
+
+}
+
+.victim-model {
+    width: 100px;  
+   flex-grow: 2;
+    
+}
+
+#victim-map-wrapper {
+    /*flex-grow: 3;*/
+}
+
+#wrap-this {
+     flex-grow: 1;
+}
+#add-button {
+   
+    /*margin-top: 10%;*/
+}
+
+#seeker-list {
+    overflow-y: scroll;
+    margin-bottom: 0px;
+    height: 215px;
+}
+
+#individual-person-map {
+    width: 300px;
+    height: 315px;
+}
+
+#comment-box {
+    /*width: 80%;*/
+    background: rgba(0,0,0,.99);
+    /*background-color: grey;*/*/
+
+    /*align-content: space-around;*/
+
+}
+
+.textbox {
+    width: 700px;
+    height: 30px;
+    border-radius: 5px;
+
+}
+
+.submit-comment {
+    border-radius: 5px;
+}
+
+#comment-list {
+    
+    opacity: 90%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.comment-with-name {
+
+    /*background: lavender;
+    border-radius: 13%;*/
+    border-radius: 18px;
+    border: 2px solid #8AC007;
+    padding: 20px;
+    background: #5B5B5B;
+    font-color: black;
+
+}
+
+#seekid {
+    text-align: left;
+    margin-left: 5%;
+}
+
+.add:hover {
+    background: lightgreen;
+}
+
+.no-add:hover {
+    background: red;
+}
+
+.mark-safe:hover {
+    background: lightgreen;
+}
+
+.mark-unsafe:hover {
+    background: red;
+}
+
+#seeker-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+#victim-added {
+    border-radius: 18px;
+    border: 2px solid black;
+    padding: 20px;
+    background: darkgrey;
+    text-align: center;
+}
+
+#seeker-info {
+    border-radius: 18px;
+    border: 2px solid black;
+    padding: 20px;
+    background: darkgrey;
+}
+
+.victim-list {
+    width: 100%;
+    text-align: left;
+}
+
+.see-victim {
+    text-align: left;
+}
+
+.signup {
+     position:absolute;
+     width:300px;
+    
+     z-index:15;
+     top:50%;
+     left:50%;
+     margin:-100px 0 0 -150px;
+     background:lavender;
+     text-align: center;
+     border-radius: 25px;
+     border: 2px solid darkgrey;
+     text-overflow: ellipsis;
+
+}
+
+
+
+
