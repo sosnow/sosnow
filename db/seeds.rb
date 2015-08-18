@@ -164,46 +164,56 @@ Seeker.create({
 end
 
 
-# Comment.create({
-#   description: FFaker::Lorem.sentence,
-#   victim_id: 40,  
-#   seeker_id: 1   
-#   })
+40.times do |i|
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: i,  
+  seeker_id: 1   
+  })
+end
+
+
+
+40.times do |i|
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: i,  
+  seeker_id: 2   
+  })
+end
+
+40.times do |i|
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: i,  
+  seeker_id: 3   
+  })
+end
+
+
+40.times do |i|
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: i,  
+  seeker_id: 4   
+  })
+end
 
 
 
 
-# Comment.create({
-#   description: FFaker::Lorem.sentence,
-#   victim_id: 40,  
-#   seeker_id: 2   
-#   })
+40.times do |i|
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: i,  
+  seeker_id: 5   
+  })
+end
 
-# Comment.create({
-#   description: FFaker::Lorem.sentence,
-#   victim_id: 40,  
-#   seeker_id: 3  
-#   })
-
-
-# Comment.create({
-#   description: FFaker::Lorem.sentence,
-#   victim_id: 39,  
-#   seeker_id: 4   
-#   })
-
-
-
-
-# Comment.create({
-#   description: FFaker::Lorem.sentence,
-#   victim_id: 39,  
-#   seeker_id: 5   
-#   })
-
-# Comment.create({
-#   description: FFaker::Lorem.sentence,
-#   seeker_name: 'ruby',
-#   victim_id: 39,  
-#   seeker_id: 6  
-#   })
+40.times do |i|
+Comment.create({
+  description: FFaker::Lorem.sentence,
+  victim_id: i,  
+  seeker_id: 6   
+  })
+end
