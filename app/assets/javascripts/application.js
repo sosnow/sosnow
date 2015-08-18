@@ -48,6 +48,7 @@ $(function() {
 	
 	$('#seek-someone-button').click(goToSearch);
 	$('#i-need-help-button').click(goToAdd);
+    $('#brand').click(goToAdd);
 });
 
 

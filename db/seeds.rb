@@ -89,7 +89,7 @@ Victim.create({
   })
 end
 
-10.times do
+5.times do
 Victim.create({
   name: FFaker::Name.name,
   description: FFaker::DizzleIpsum.sentence,
@@ -210,10 +210,8 @@ Comment.create({
   })
 end
 
-40.times do |i|
-Comment.create({
-  description: FFaker::Lorem.sentence,
-  victim_id: i,  
-  seeker_id: 6   
-  })
+1.upto(5) do |i|
+  1.upto(40) do |j|
+  ActiveRecord::Base.connection.execute "INSERT INTO seekers_victims VALUES (#{i},#{j})"
+  end
 end
