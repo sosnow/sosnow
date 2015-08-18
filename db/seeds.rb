@@ -210,10 +210,8 @@ Comment.create({
   })
 end
 
-40.times do |i|
-Comment.create({
-  description: FFaker::Lorem.sentence,
-  victim_id: i,  
-  seeker_id: 6   
-  })
+5.times do |i|
+  40.times do |j|
+  execute "insert into seekers_victims (seeker_id, victim_id) values ("+i+","+j+")"
+  end
 end
