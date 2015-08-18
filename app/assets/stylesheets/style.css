@@ -226,3 +226,11 @@ body {
 	float: left;
 	display: inline-block;
 }
+
+.list {
+	cursor: pointer;
+}
+
+.list:hover { 
+    background-color: beige;
+}

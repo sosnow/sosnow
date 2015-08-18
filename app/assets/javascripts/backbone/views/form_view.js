@@ -18,10 +18,10 @@ App.Views.Forms = Backbone.View.extend({
         }
     },
     specificLocCheck: function() {
-        if ( $('[name=location_specific]').val() !== '') {
-            return $('[name=description]').val()
-        } else {
+        if ($('[name=location_specific]').val() !== '' ) {
             return ($('[name=description]').val() + '\n[Additional location information: ' +  $('[name=location_specific]').val() + ']') 
+        } else {
+            return $('[name=description]').val()
         }
     },
     addVictim: function() {
