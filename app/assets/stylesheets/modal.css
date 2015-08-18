@@ -129,6 +129,11 @@
     margin-left: 10%;
 }
 
+#seeker-list {
+   display: flex;
+    flex-direction: column; 
+}
+
 #victim-added {
     border-radius: 18px;
     border: 2px solid black;
@@ -160,7 +165,7 @@
      z-index:15;
      top:50%;
      left:50%;
-     margin:-100px 0 0 -150px;
+     margin:70px 0 0 -150px;
      background:lavender;
      text-align: center;
      border-radius: 25px;
