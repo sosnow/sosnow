@@ -27,14 +27,10 @@ App.Views.Forms = Backbone.View.extend({
         }
     },
     specificLocCheck: function() {
-       if ( $('[name=location_specific]').val() !== 'no-indiv1dual-d3scription-4-th!s-p3erson') {
-           return $('[name=description]').val()
+       if ($('[name=location_specific]').val() !== '' ) {
+           return ($('[name=description]').val() + '\n[Additional location information: ' +  $('[name=location_specific]').val() + ']') 
        } else {
-           if ($('[name=location_specific]').val() !== '' ) {
-               return ($('[name=description]').val() + '\n[Additional location information: ' +  $('[name=location_specific]').val() + ']') 
-           } else {
-               return $('[name=description]').val()
-           }
+           return $('[name=description]').val();
        }
    },
     addVictim: function() {
