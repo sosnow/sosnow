@@ -23,7 +23,7 @@
     justify-content: space-around;
     background: rgba(0,0,0,.99);
     background-color: #5B5B5B;
-    height: 305px;
+    height: 315px;
 
     /*align-content: space-around;*/
 
@@ -55,7 +55,7 @@
 
 #individual-person-map {
     width: 300px;
-    height: 305px;
+    height: 315px;
 }
 
 #comment-box {
