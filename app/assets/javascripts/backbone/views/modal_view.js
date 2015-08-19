@@ -215,61 +215,66 @@ App.Views.Modal = Backbone.View.extend({
 
 	},
 	showComments: function() {
-		// $('.comment-box').val('');
-		// $('.seeker').val('')
-		console.log('show my comments bro!');
-		var id = $('#victim-id-comment').val();
-		
+        // $('.comment-box').val('');
+        // $('.seeker').val('')
+        console.log('show my comments bro!');
+        var id = $('#victim-id-comment').val();
+        
 
-		$.ajax({
+        $.ajax({
             type: 'GET',
             url: '/sessions/new',
             success: function(data) {
-            	if (data) {
-	              	$.ajax({
-	             		type: 'GET',
-	             		url: 'seekers/'+ data,
-	              		success: function(data1) {
-	                        
-		                  	console.log(data1);
-		                  	
-		            	var comment = $('[name=comment]').val();
-				    	var data2 = {
-				    		description: $('[name=comment]').val(),
-				    		victim_id: id,
-				    		seeker_id: data,
-				    		seeker_name: data1[0].name		    		
-				   			}
+                if (data) {
+                      $.ajax({
+                         type: 'GET',
+                         url: 'seekers/'+ data,
+                          success: function(data1) {
+                            
+                              console.log(data1);
+                              
+                        var comment = $('[name=comment]').val();
+                        var data2 = {
+                            description: $('[name=comment]').val(),
+                            victim_id: id,
+                            seeker_id: data,
+                            seeker_name: data1[0].name                    
+                               }
 
-	           			 var tag = $('<div>').html(comment).addClass('comment-box');
-	           			 var seekername = $('<div>').html(data1[0].name).addClass('seeker');
-	           			 	var box = $('#comment-list');
-					        
-					        box.prepend(seekername);
-					        box.prepend(tag);
+                            var tag = $('<div>').html(comment).addClass('comment-box');
+                            var seekername = $('<div>').html(data1[0].name).addClass('seeker');
+                                var box = $('<div>').addClass('comment-with-name');
+                            
+                            box.append(seekername);
+                            box.append(tag);
 
-					        App.comments = new App.Collections.Comments();
-					         $('.textbox').val('');
-					        App.comments.create(data2);
-	              		}
-	                });
-	            }
-	            	else {
-	            		var comment = $('[name=comment]').val();
-		            	var data2 = {
-				    		description: $('[name=comment]').val(),
-				    		victim_id: id	
-				   			}
-	           			 var tag = $('<p>').html(comment).addClass('showComment');
+                            $('#comment-list').append(box);
 
-					        $('#comment-box').append(tag);
-					        App.comments = new App.Collections.Comments();
-					        $('.textbox').val('');
-					        App.comments.create(data2);
-          			}
-	        }
-		   	              
+                            App.comments = new App.Collections.Comments();
+                             $('.textbox').val('');
+                            App.comments.create(data2);
+                          }
+                    });
+                }
+                    else {
+                        var comment = $('[name=comment]').val();
+                        var data2 = {
+                            description: $('[name=comment]').val(),
+                            victim_id: id    
+                               }
+                            var box = $('<div>').addClass('comment-with-name');
+                            var tag = $('<div>').html(comment).addClass('comment-box');
+                            box.append(tag);
+                            $('#comment-list').append(box);
+
+
+                            App.comments = new App.Collections.Comments();
+                            $('.textbox').val('');
+                            App.comments.create(data2);
+                      }
+            }
+                             
         });    
 
-	}
+    }
 });
